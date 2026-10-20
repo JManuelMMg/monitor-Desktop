@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, hint %}
+{% block title %}Conexión{% endblock %}
+{% block content %}
+<section class="page-head">
+    <div>
+        <div class="eyebrow">{{ icon('wifi') }} Conexión</div>
+        <h1>Conexión y app</h1>
+        <p class="lead">Instala el panel como aplicación, revisa por qué dirección estás conectado y deja que cambie solo entre la red de casa y la VPN cuando sales.</p>
+    </div>
+    <div class="head-actions">
+        <button class="btn" type="button" id="test-all">{{ icon('refresh') }} Probar conexiones</button>
+    </div>
+</section>
+
+<div class="grid-2">
+    <section class="card" data-reveal data-i="1">
+        <div class="card-head"><h2>{{ icon('zap') }} Estado actual</h2><span class="status" id="mode-badge">—</span></div>
+        <div class="health" id="current-health"></div>
+        <dl class="kv" id="current-kv">
+            <dt>Dirección</dt><dd id="cur-url">—</dd>
+            <dt>Latencia</dt><dd id="cur-latency">—</dd>
+            <dt>Conexión segura</dt><dd id="cur-secure">—</dd>
+        </dl>
+    </section>
+
+    <section class="card" data-reveal data-i="2">
+        <div class="card-head"><h2>{{ icon('download') }} Usar como aplicación</h2></div>
+        <div class="install-hero">
+            <img src="/static/icons/icon-192.png" alt="" width="72" height="72">
+            <div>
+                <p data-installed class="hidden"><span class="status online">Ya la estás usando como app</span></p>
+                <p class="muted">Se abre en su propia ventana, con icono en el menú Inicio, la barra de tareas o la pantalla del móvil. Es la misma app de escritorio, sin instalar nada aparte.</p>
+                <button class="btn btn-primary hidden" type="button" data-install>{{ icon('download') }} Instalar ahora</button>
+            </div>
+        </div>
+        {% call hint('Si no aparece el botón «Instalar»') %}
+        <ul>
+            <li><strong>Windows (Edge o Chrome)</strong>: menú <code>⋯</code> › <em>Aplicaciones</em> › <em>Instalar este sitio como aplicación</em>.</li>
+            <li><strong>Android (Chrome)</strong>: menú <code>⋮</code> › <em>Instalar aplicación</em> o <em>Añadir a pantalla de inicio</em>.</li>
+            <li><strong>iPhone / iPad (Safari)</strong>: botón Compartir › <em>Añadir a pantalla de inicio</em>.</li>
+            <li>La instalación exige HTTPS con el certificado de la Pi aceptado (ver «Certificado» abajo).</li>
+        </ul>
+        {% endcall %}
+    </section>
+</div>
+
+<section class="card" data-reveal data-i="3">
+    <div class="card-head">
+        <h2>{{ icon('list') }} Direcciones del servidor</h2>
+        <label class="switch"><input type="checkbox" id="auto-switch"> Cambiar sola si la actual deja de responder</label>
+    </div>
+    <p class="card-sub">Las mismas que usa la app de escritorio: primero la red local y después la VPN. Si la conexión se corta, la web comprueba las demás y salta a la primera que responda.</p>
+    <div class="server-list" id="server-list"></div>
+    {% call hint('¿De dónde salen estas direcciones?') %}
+    Las define el administrador en la Pi con <code>PUBLIC_URLS</code> en <code>/etc/monitor/monitor.env</code>
+    (por ejemplo <code>https://192.168.1.50:8443,https://10.8.0.1:8443</code>). Por seguridad la web solo puede
+    comprobar esas direcciones. Al pasar a otra dirección quizá tengas que iniciar sesión de nuevo: la sesión se guarda por dirección.
+    {% endcall %}
+</section>
+
+<div class="grid-2">
+    <section class="card" data-reveal data-i="4">
+        <div class="card-head"><h2>{{ icon('shield') }} Desde fuera de casa</h2></div>
+        <ol class="checklist">
+            <li><span class="num">1</span><span>Instala la app oficial de <strong>WireGuard</strong> (Windows, Android o iOS).</span></li>
+            <li><span class="num">2</span><span>Pide al administrador tu archivo de túnel o el código QR (<code>wireguard.sh add &lt;equipo&gt;</code> en la Pi).</span></li>
+            <li><span class="num">3</span><span>Activa el túnel y abre esta misma app: la dirección de casa también funciona por la VPN.</span></li>
+        </ol>
+    </section>
+    <section class="card" data-reveal data-i="5">
+        <div class="card-head"><h2>{{ icon('key') }} Certificado</h2></div>
+        <p class="muted">La Pi usa un certificado propio. Para que el navegador o la app no muestren advertencias, importa su CA una vez en cada equipo:</p>
+        <ul class="checklist">
+            <li><span class="num">{{ icon('cpu') }}</span><span><strong>Windows</strong>: <code>desktop\instalar_ca.ps1 -Ruta .\ca.crt</code></span></li>
+            <li><span class="num">{{ icon('cpu') }}</span><span><strong>Android / iOS</strong>: abre <code>ca.crt</code> e instálalo como certificado de CA.</span></li>
+        </ul>
+    </section>
+</div>
+{% endblock %}
+{% block scripts %}<script src="/static/js/connection.js"></script>{% endblock %}

@@ -1,0 +1,10 @@
+# Dependencias directas (sin Node/NPM). Revisadas una por una:
+fastapi        # API + plantillas
+uvicorn        # servidor ASGI
+websockets     # soporte WebSocket para uvicorn
+jinja2         # plantillas HTML
+psycopg2-binary  # cliente PostgreSQL (Neon)
+paho-mqtt      # cliente MQTT (Eclipse)
+PyJWT          # tokens JWT HS256
+# Contraseñas: hashlib.scrypt de la biblioteca estándar (sin dependencia).
+# .env: parser propio en app/config.py (sin python-dotenv).

@@ -1,0 +1,7 @@
+[Unit]
+Description=Recarga Mosquitto tras cambiar las credenciales MQTT
+After=mosquitto.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/systemctl reload mosquitto

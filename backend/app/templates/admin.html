@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, hint %}
+{% block title %}Administración{% endblock %}
+{% block content %}
+<section class="page-head">
+    <div>
+        <div class="eyebrow">{{ icon('shield') }} Administración</div>
+        <h1>Usuarios, nodos y sistema</h1>
+        <p class="lead">Gestiona quién entra al panel y con qué permisos, da de alta nodos nuevos y revisa el estado del servidor.</p>
+    </div>
+    <div class="head-actions">
+        <button class="btn btn-primary" type="button" data-open-add-node>{{ icon('plus') }} Agregar nodo</button>
+    </div>
+</section>
+
+<nav class="tabs" id="admin-tabs">
+    <button class="tab" type="button" data-tab="usuarios">{{ icon('user') }} Usuarios</button>
+    <button class="tab" type="button" data-tab="nodos">{{ icon('cpu') }} Nodos</button>
+    <button class="tab" type="button" data-tab="sistema">{{ icon('cog') }} Sistema</button>
+</nav>
+
+<section data-panel="usuarios" class="tab-panel">
+    <div class="grid-2">
+        <div class="card">
+            <div class="card-head"><h2>{{ icon('user') }} Usuarios</h2><span class="muted" id="user-count"></span></div>
+            <div class="table-wrap">
+                <table class="table" id="users-table">
+                    <thead><tr><th>Usuario</th><th>Rol</th><th>Estado</th><th>Último acceso</th><th></th></tr></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-head"><h2>{{ icon('plus') }} Nuevo usuario</h2></div>
+            <form id="new-user-form" class="form-grid">
+                <label>Usuario <input name="username" required minlength="3" maxlength="64" pattern="[A-Za-z0-9_.\-]+" autocomplete="off"><span class="help">Letras, números, punto, guion o guion bajo.</span></label>
+                <label>Rol
+                    <select name="role">
+                        <option value="viewer">Solo lectura</option>
+                        <option value="operator">Operador</option>
+                        <option value="admin">Administrador</option>
+                    </select>
+                </label>
+                <label class="span-2">Contraseña inicial <input name="password" type="password" required minlength="10" maxlength="128" autocomplete="new-password"><span class="help">Mínimo 10 caracteres. Pídele que la cambie en «Mi cuenta».</span></label>
+                <div class="form-actions span-2"><button class="btn btn-primary" type="submit">{{ icon('plus') }} Crear usuario</button></div>
+            </form>
+            {% call hint('¿Qué puede hacer cada rol?', open=True) %}
+            <ul>
+                <li><strong>Solo lectura</strong>: ve el panel, el histórico y exporta CSV.</li>
+                <li><strong>Operador</strong>: además renombra y ubica nodos, ajusta umbrales y configuración, y envía comandos (calibrar, reiniciar…).</li>
+                <li><strong>Administrador</strong>: además gestiona usuarios, da de alta nodos, sus credenciales, y puede deshabilitarlos o eliminarlos.</li>
+            </ul>
+            Al cambiar el rol, la contraseña o desactivar a alguien, sus sesiones abiertas se cierran solas. Siempre queda al menos un administrador activo.
+            {% endcall %}
+        </div>
+    </div>
+</section>
+
+<section data-panel="nodos" class="tab-panel hidden">
+    <div class="card">
+        <div class="card-head"><h2>{{ icon('cpu') }} Nodos registrados</h2><span class="muted" id="device-count"></span></div>
+        <div class="table-wrap">
+            <table class="table" id="devices-table">
+                <thead><tr><th>Nombre</th><th>Zona</th><th>MAC</th><th>Conexión</th><th>Firmware</th><th>Credencial</th><th></th></tr></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    {% call hint('Cómo agregar más nodos') %}
+    <ol>
+        <li>Carga el firmware <code>esp32_node</code> (con el <code>ca_cert.h</code> de la Pi) en el ESP32 nuevo.</li>
+        <li>Pulsa <strong>Agregar nodo</strong>, escribe la MAC que muestra el monitor serie y dale nombre y zona.</li>
+        <li>Copia la línea de aprovisionamiento y pégala en el monitor serie. El asistente te avisa cuando se conecte.</li>
+    </ol>
+    No hay límite fijo de nodos: cada uno tiene su propia credencial y solo puede publicar bajo su MAC.
+    {% endcall %}
+</section>
+
+<section data-panel="sistema" class="tab-panel hidden">
+    <div class="grid-2">
+        <div class="card">
+            <div class="card-head"><h2>{{ icon('zap') }} Estado del servidor</h2><button class="btn btn-sm btn-ghost" type="button" id="refresh-health">{{ icon('refresh') }} Actualizar</button></div>
+            <div class="health" id="system-health"></div>
+        </div>
+        <div class="card">
+            <div class="card-head"><h2>{{ icon('wifi') }} Aprovisionamiento</h2></div>
+            <dl class="kv">
+                <dt>IP para los ESP32</dt><dd id="prov-host">—</dd>
+                <dt>Puerto MQTT TLS</dt><dd id="prov-port">—</dd>
+                <dt>Archivo de claves</dt><dd id="prov-managed">—</dd>
+            </dl>
+            {% call hint('¿De dónde salen estos datos?') %}
+            Vienen de <code>/etc/monitor/monitor.env</code> en la Pi (<code>MQTT_PUBLIC_HOST</code>, <code>MQTT_PUBLIC_PORT</code>, <code>MQTT_PASSWD_FILE</code>), que crea <code>install.sh</code>.
+            {% endcall %}
+        </div>
+    </div>
+</section>
+
+{% include "_add_node.html" %}
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/addnode.js"></script>
+<script src="/static/js/admin.js"></script>
+{% endblock %}

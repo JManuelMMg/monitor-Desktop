@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, hint %}
+{% block title %}Nodo{% endblock %}
+{% block content %}
+<div id="node-root" data-mac="{{ mac }}" data-can-operate="{{ '1' if can_operate else '0' }}" data-is-admin="{{ '1' if is_admin else '0' }}">
+    <section class="page-head">
+        <div>
+            <a href="/" class="back-link">{{ icon('back') }} Panel general</a>
+            <h1 id="node-title" class="skeleton">Cargando nodo</h1>
+            <p class="lead"><span id="node-zone">—</span> · <span class="mono" id="node-mac">—</span> · firmware <span class="mono" id="node-fw">—</span> · IP <span class="mono" id="node-ip">—</span></p>
+        </div>
+        <div class="head-actions">
+            <span id="node-conn" class="status">—</span>
+            <button class="btn operator-only" type="button" id="quick-identify" data-tip="Hace parpadear el LED del ESP32 15 s para encontrarlo">{{ icon('eye') }} Identificar</button>
+        </div>
+    </section>
+
+    <div id="node-pending" class="banner banner-info hidden">{{ icon('clock') }}<span>Este nodo está registrado pero todavía no se ha conectado. Pega su línea de aprovisionamiento en el monitor serie del ESP32.</span></div>
+    <div id="node-disabled" class="banner banner-warn hidden">{{ icon('power') }}<span>Nodo deshabilitado: sus lecturas no se guardan ni generan alarmas.</span></div>
+    <div id="node-alarms" class="banner banner-alarm hidden">{{ icon('alert') }}<span id="node-alarm-text"></span></div>
+
+    <nav class="tabs" id="node-tabs">
+        <button class="tab" type="button" data-tab="resumen">{{ icon('grid') }} Resumen</button>
+        <button class="tab" type="button" data-tab="historico">{{ icon('chart') }} Histórico</button>
+        <button class="tab" type="button" data-tab="ajustes">{{ icon('cog') }} Ajustes</button>
+        <button class="tab" type="button" data-tab="acciones">{{ icon('zap') }} Acciones</button>
+        <button class="tab admin-only" type="button" data-tab="admin">{{ icon('shield') }} Administración</button>
+    </nav>
+
+    <!-- RESUMEN -->
+    <section data-panel="resumen" class="tab-panel">
+        <div class="card">
+            <div class="node-hero">
+                <div id="level-ring"></div>
+                <div class="metric-tiles" id="live-metrics">
+                    <div class="tile" data-metric="temp_c"><div class="tile-head">{{ icon('temp') }} Temperatura</div><div class="tile-value"><span class="v">—</span><small>°C</small></div><div class="tile-note"></div></div>
+                    <div class="tile" data-metric="hum_pct"><div class="tile-head">{{ icon('drop') }} Humedad</div><div class="tile-value"><span class="v">—</span><small>%</small></div><div class="tile-note"></div></div>
+                    <div class="tile" data-metric="ch4_ppm"><div class="tile-head">{{ icon('flame') }} Metano CH₄</div><div class="tile-value"><span class="v">—</span><small>ppm</small></div><div class="tile-note" id="mq-note"></div></div>
+                    <div class="tile" data-metric="co2_ppm"><div class="tile-head">{{ icon('cloud') }} CO₂</div><div class="tile-value"><span class="v">—</span><small>ppm</small></div><div class="tile-note"></div></div>
+                    <div class="tile" data-metric="dist_cm"><div class="tile-head">{{ icon('level') }} Distancia al líquido</div><div class="tile-value"><span class="v">—</span><small>cm</small></div><div class="tile-note">medida por ultrasonido</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-head"><h2>{{ icon('cpu') }} Salud de los sensores</h2><span class="muted" id="last-update">—</span></div>
+            <div class="health" id="health"></div>
+            {% call hint('¿Qué significa cada indicador?') %}
+            <ul>
+                <li><strong>Verde</strong>: el sensor responde y su valor es válido.</li>
+                <li><strong>Ámbar</strong>: el sensor responde pero aún no es fiable (MQ-4 calentando o sin calibrar).</li>
+                <li><strong>Rojo</strong>: sin lectura. Revisa el cableado o la alimentación de ese sensor; el valor se publica vacío en lugar de repetir el último.</li>
+            </ul>
+            {% endcall %}
+        </div>
+    </section>
+
+    <!-- HISTÓRICO -->
+    <section data-panel="historico" class="tab-panel hidden">
+        <div class="card">
+            <div class="card-head">
+                <h2>{{ icon('chart') }} Histórico</h2>
+                <div class="head-actions">
+                    <div class="range-picker" id="range-picker">
+                        <button type="button" data-hours="1">1 h</button>
+                        <button type="button" data-hours="6">6 h</button>
+                        <button type="button" data-hours="24" class="active">24 h</button>
+                        <button type="button" data-hours="168">7 d</button>
+                        <button type="button" data-hours="720">30 d</button>
+                    </div>
+                    <a id="export-link" class="btn btn-ghost btn-sm" href="#">{{ icon('download') }} CSV</a>
+                </div>
+            </div>
+            <p class="card-sub">Promedios por intervalo para que las gráficas carguen rápido. El CSV trae cada lectura guardada.</p>
+            <div class="charts">
+                <figure><figcaption>{{ icon('temp') }} Temperatura y humedad</figcaption><canvas id="chart-env" height="200"></canvas></figure>
+                <figure><figcaption>{{ icon('flame') }} Metano CH₄ (ppm)</figcaption><canvas id="chart-ch4" height="200"></canvas></figure>
+                <figure><figcaption>{{ icon('cloud') }} CO₂ (ppm)</figcaption><canvas id="chart-co2" height="200"></canvas></figure>
+                <figure><figcaption>{{ icon('level') }} Nivel del reactor (%)</figcaption><canvas id="chart-level" height="200"></canvas></figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- AJUSTES -->
+    <section data-panel="ajustes" class="tab-panel hidden">
+        <p class="callout viewer-only">{{ icon('info') }}<span>Tu rol es de solo lectura: puedes ver los ajustes pero no cambiarlos.</span></p>
+        <div class="grid-2">
+            <div class="card">
+                <div class="card-head"><h2>{{ icon('pin') }} Nombre y ubicación</h2></div>
+                <p class="card-sub">Solo afecta al panel: el ESP32 no necesita saber dónde está.</p>
+                <form id="meta-form" class="form-grid">
+                    <label>Nombre <input name="name" maxlength="80" required></label>
+                    <label>Zona <input name="zone" maxlength="80" list="zone-list"><span class="help">Agrupa los nodos en el panel.</span></label>
+                    <datalist id="zone-list"></datalist>
+                    <label class="span-2">Descripción <input name="description" maxlength="500"></label>
+                    <div class="form-actions span-2 operator-only"><button class="btn btn-primary" type="submit">{{ icon('check') }} Guardar</button></div>
+                </form>
+            </div>
+            <div class="card">
+                <div class="card-head"><h2>{{ icon('alert') }} Umbrales de alarma</h2></div>
+                <p class="card-sub">Si una lectura supera su límite, el nodo se marca en rojo en el panel.</p>
+                <form id="threshold-form" class="form-grid">
+                    <label>Temperatura máx. (°C) <input name="temp_c_max" type="number" step="0.1"></label>
+                    <label>CH₄ máx. (ppm) <input name="ch4_ppm_max" type="number" step="1"><span class="help">5 000 ppm = 10 % del límite explosivo.</span></label>
+                    <label>CO₂ máx. (ppm) <input name="co2_ppm_max" type="number" step="1"></label>
+                    <label>Nivel máx. (%) <input name="level_pct_max" type="number" step="0.1"><span class="help">Evita desbordes del reactor.</span></label>
+                    <div class="form-actions span-2 operator-only"><button class="btn btn-primary" type="submit">{{ icon('check') }} Guardar umbrales</button></div>
+                </form>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <h2>{{ icon('cog') }} Configuración del ESP32</h2>
+                <span id="config-sync" class="status">—</span>
+            </div>
+            <p class="card-sub">Se envía al nodo por MQTT y queda retenida: si está apagado la recibe al reconectar. El indicador pasa a «Aplicada» cuando el nodo la confirma.</p>
+            <p id="config-error" class="banner banner-alarm hidden"></p>
+            <form id="config-form" class="form-grid">
+                <label>Intervalo de lectura (ms) <input name="interval_ms" type="number" min="2000" max="600000" step="500" required><span class="help">Cada cuánto mide y publica. Mínimo 2 000 ms.</span></label>
+                <label>LED de estado<span class="check"><input name="status_led" type="checkbox"> Encendido</span><span class="help">Fijo = conectado; parpadeo = buscando red.</span></label>
+                <label>Corrección temperatura (°C) <input name="dht_temp_offset" type="number" min="-10" max="10" step="0.1" required><span class="help">Se suma a la lectura del DHT11. Compárala con un termómetro de referencia.</span></label>
+                <label>Corrección humedad (%) <input name="dht_hum_offset" type="number" min="-30" max="30" step="0.1" required></label>
+                <label>Reactor vacío (cm) <input name="reactor_empty_cm" type="number" min="2" max="450" step="0.5" required><span class="help">Distancia del sensor al fondo = nivel 0 %.</span></label>
+                <label>Reactor lleno (cm) <input name="reactor_full_cm" type="number" min="0" max="450" step="0.5" required><span class="help">Distancia al nivel máximo = 100 %. Debe ser menor que «vacío».</span></label>
+                <label>Corrección ultrasonido (cm) <input name="us_offset_cm" type="number" min="-100" max="100" step="0.1" required></label>
+                <label>Escala ultrasonido <input name="us_scale" type="number" min="0.5" max="2" step="0.001" required><span class="help">1 = sin cambio. Ajusta si la distancia medida difiere de la real.</span></label>
+                <label class="span-2">Autocalibración del CO₂ (ABC)<span class="check"><input name="co2_abc" type="checkbox"> Activada</span><span class="help">Déjala apagada en biodigestores: supone que el aire baja a 400 ppm cada día, y ahí nunca ocurre.</span></label>
+                <div class="form-actions span-2 operator-only"><button class="btn btn-primary" type="submit">{{ icon('zap') }} Enviar al nodo</button></div>
+            </form>
+        </div>
+    </section>
+
+    <!-- ACCIONES -->
+    <section data-panel="acciones" class="tab-panel hidden">
+        <p class="callout viewer-only">{{ icon('info') }}<span>Tu rol es de solo lectura: no puedes enviar comandos.</span></p>
+        <div class="cmd-grid operator-only">
+            <div class="cmd"><h3>{{ icon('eye') }} Identificar</h3><p>El LED parpadea rápido 15 s. Útil para encontrar el nodo físico entre varios.</p><button class="btn btn-sm" data-cmd="identify" type="button">Identificar</button></div>
+            <div class="cmd"><h3>{{ icon('zap') }} Ping</h3><p>Comprueba que el nodo recibe comandos; responde «pong».</p><button class="btn btn-sm" data-cmd="ping" type="button">Enviar ping</button></div>
+            <div class="cmd risk"><h3>{{ icon('flame') }} Calibrar MQ-4</h3><p>Calcula R0 en <strong>aire limpio</strong> durante 20 s. Hazlo con el sensor caliente (3 min encendido) y fuera del biodigestor.</p><button class="btn btn-sm btn-warn" data-cmd="calibrate_mq4" data-confirm="¿El MQ-4 lleva al menos 3 minutos encendido y está en aire limpio? La calibración dura 20 s." type="button">Calibrar</button></div>
+            <div class="cmd risk"><h3>{{ icon('cloud') }} Cero de CO₂</h3><p>Fija 400 ppm como referencia. El sensor debe llevar <strong>20 min al aire libre</strong>; si no, todas las lecturas quedarán desplazadas.</p><button class="btn btn-sm btn-warn" data-cmd="calibrate_co2_zero" data-confirm="¿El sensor de CO₂ lleva 20 minutos en aire exterior? Si no, la calibración quedará mal." type="button">Calibrar cero</button></div>
+            <div class="cmd risk"><h3>{{ icon('refresh') }} Borrar R0</h3><p>Olvida la calibración del MQ-4. El metano se mostrará vacío hasta recalibrar.</p><button class="btn btn-sm btn-warn" data-cmd="clear_mq4" data-confirm="¿Borrar la calibración del MQ-4?" type="button">Borrar</button></div>
+            <div class="cmd danger"><h3>{{ icon('power') }} Reiniciar</h3><p>Reinicia el ESP32. Vuelve en unos 10 s; el MQ-4 necesita otros 3 min de calentamiento.</p><button class="btn btn-sm btn-danger" data-cmd="reboot" data-confirm="¿Reiniciar el nodo?" type="button">Reiniciar</button></div>
+        </div>
+        <div class="card">
+            <div class="card-head"><h2>{{ icon('list') }} Últimos comandos</h2><span class="muted">quién, cuándo y qué respondió el nodo</span></div>
+            <div class="table-wrap">
+                <table class="table" id="command-log">
+                    <thead><tr><th>Hora</th><th>Usuario</th><th>Comando</th><th>Resultado</th></tr></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ADMINISTRACIÓN -->
+    <section data-panel="admin" class="tab-panel hidden admin-only">
+        <div class="grid-2">
+            <div class="card">
+                <div class="card-head"><h2>{{ icon('key') }} Credenciales MQTT</h2><span class="status" id="cred-status">—</span></div>
+                <dl class="kv">
+                    <dt>Usuario</dt><dd id="cred-user">—</dd>
+                    <dt>Emitidas</dt><dd id="cred-date">—</dd>
+                </dl>
+                <div class="secret-box hidden" id="cred-new">
+                    <div class="callout warn">{{ icon('key') }}<span><strong>Nueva clave, solo se muestra ahora.</strong> Envíala al ESP32 por USB con <code>{"cmd":"provision","mqtt_pass":"…"}</code>.</span></div>
+                    <span class="copy-field"><code id="cred-pass"></code><button type="button" data-copy="cred-pass">{{ icon('copy') }}</button></span>
+                </div>
+                <div class="form-actions">
+                    <button class="btn btn-warn" type="button" id="rotate-cred">{{ icon('refresh') }} Generar clave nueva</button>
+                    <button class="btn btn-danger" type="button" id="revoke-cred">{{ icon('x') }} Revocar</button>
+                </div>
+                {% call hint('¿Cuándo rotar o revocar?') %}
+                <ul>
+                    <li><strong>Generar clave nueva</strong>: si perdiste la clave o sospechas que se filtró. La anterior deja de valer y el nodo se desconecta hasta que le cargues la nueva.</li>
+                    <li><strong>Revocar</strong>: el nodo ya no puede conectarse (por ejemplo, si lo retiras o lo robaron). Su histórico se conserva.</li>
+                </ul>
+                {% endcall %}
+            </div>
+            <div class="card">
+                <div class="card-head"><h2>{{ icon('power') }} Estado del nodo</h2></div>
+                <div class="form-actions">
+                    <button id="toggle-enabled" class="btn btn-warn" type="button">Deshabilitar</button>
+                    <button id="delete-node" class="btn btn-danger" type="button">{{ icon('trash') }} Eliminar nodo</button>
+                </div>
+                {% call hint('Deshabilitar o eliminar') %}
+                <ul>
+                    <li><strong>Deshabilitar</strong>: el nodo sigue conectado y visible, pero sus lecturas no se guardan ni disparan alarmas. Útil en mantenimiento.</li>
+                    <li><strong>Eliminar</strong>: borra el nodo, todo su histórico y su credencial MQTT. No se puede deshacer.</li>
+                </ul>
+                {% endcall %}
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/chart.js"></script>
+<script src="/static/js/node.js"></script>
+{% endblock %}

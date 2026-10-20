@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon %}
+{% block title %}Iniciar sesión{% endblock %}
+{% block public %}
+<div class="auth">
+    <section class="auth-art">
+        <a class="brand" href="/login">
+            <span class="brand-mark">{{ icon('zap') }}</span>
+            <span class="brand-text">MONITOR<small>multi-nodo</small></span>
+        </a>
+        <div>
+            <h1>Tus biodigestores, <span>en vivo</span> y desde cualquier lugar.</h1>
+            <p>Temperatura, humedad, metano, CO₂ y nivel de cada nodo ESP32, con alarmas al instante y el histórico guardado en la nube.</p>
+            <ul class="feature-list">
+                <li data-i="0">{{ icon('zap') }} Datos en tiempo real por MQTT cifrado</li>
+                <li data-i="1">{{ icon('alert') }} Alarmas por umbral para cada nodo</li>
+                <li data-i="2">{{ icon('pin') }} Organiza los nodos por zona sin tocar el firmware</li>
+                <li data-i="3">{{ icon('shield') }} Acceso por roles y conexión remota por VPN</li>
+            </ul>
+        </div>
+        <svg class="wave" viewBox="0 0 600 70" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 45 C 60 10, 110 70, 170 38 S 280 8, 340 40 S 450 70, 510 30 S 580 20, 600 35"/>
+            <path d="M0 55 C 80 30, 130 65, 200 50 S 300 20, 380 48 S 480 62, 540 44 S 590 40, 600 46"/>
+        </svg>
+    </section>
+
+    <section class="auth-form">
+        <div class="auth-card">
+            <h2>Iniciar sesión</h2>
+            <p class="muted">Usa la cuenta que te creó el administrador.</p>
+            <form id="login-form" autocomplete="on" novalidate>
+                <label>Usuario
+                    <input name="username" autocomplete="username" required maxlength="64" autofocus>
+                </label>
+                <label>Contraseña
+                    <span class="pw-wrap">
+                        <input name="password" type="password" autocomplete="current-password" required maxlength="128">
+                        <button class="icon-btn" type="button" id="toggle-pw" data-tip="Mostrar / ocultar">{{ icon('eye') }}</button>
+                    </span>
+                </label>
+                <p id="login-error" class="banner banner-alarm hidden" role="alert"></p>
+                <button class="btn btn-primary" type="submit">Entrar {{ icon('chevron') }}</button>
+            </form>
+            <div class="callout">
+                {{ icon('info') }}
+                <span>¿Primera vez? El primer administrador se crea en la Raspberry Pi con
+                <code>monitor-cli.sh create-admin</code>. Tras 5 intentos fallidos el acceso se bloquea 15 minutos.</span>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+{% block scripts %}<script src="/static/js/login.js"></script>{% endblock %}

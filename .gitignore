@@ -1,0 +1,12 @@
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+.env
+backend/data/
+desktop/build/
+desktop/dist/
+desktop/*.spec
+desktop/ca.crt
+firmware/.pio/

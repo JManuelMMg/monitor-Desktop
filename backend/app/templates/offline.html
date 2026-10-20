@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, hint %}
+{% block title %}Sin conexión{% endblock %}
+{% block public %}
+<div class="offline-wrap">
+    <section class="card offline-card">
+        <div class="radar"><span></span><span></span><span></span></div>
+        <h1>Sin conexión con el servidor</h1>
+        <p class="muted" id="off-status">La Raspberry Pi no responde en <span class="mono" id="off-origin"></span>. Reintentando…</p>
+        <div class="server-list" id="off-list"></div>
+        <div class="form-actions">
+            <button class="btn" type="button" id="off-retry">{{ icon('refresh') }} Reintentar ahora</button>
+        </div>
+        {% call hint('¿Qué puedo revisar?', open=True) %}
+        <ul>
+            <li><strong>En casa</strong>: que este equipo esté en la misma WiFi que la Raspberry Pi y que la Pi esté encendida.</li>
+            <li><strong>Fuera de casa</strong>: activa el túnel <strong>WireGuard</strong>; esta pantalla saltará sola a la dirección que responda.</li>
+            <li>Si ves un aviso de certificado, importa la CA de la Pi en este equipo.</li>
+        </ul>
+        {% endcall %}
+    </section>
+</div>
+{% endblock %}
+{% block scripts %}<script src="/static/js/offline.js"></script>{% endblock %}

@@ -1,0 +1,15 @@
+[Unit]
+Description=Monitor multi-nodo - API
+After=network-online.target mosquitto.service
+Wants=network-online.target
+
+[Service]
+User=pi
+WorkingDirectory=/opt/monitor/backend
+EnvironmentFile=/opt/monitor/backend/.env
+ExecStart=/opt/monitor/backend/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

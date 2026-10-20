@@ -1,0 +1,11 @@
+# Recarga Mosquitto cuando el backend reescribe el archivo de credenciales
+# (alta, rotación o revocación de nodos desde el panel).
+[Unit]
+Description=Vigila las credenciales MQTT del monitor
+
+[Path]
+PathChanged=/var/lib/monitor-mqtt/passwd
+Unit=mosquitto-monitor-reload.service
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,14 @@
+# /etc/mosquitto/acl
+# Cada nodo se autentica con usuario = su MAC (12 hex minúsculas) y solo
+# puede tocar los tópicos bajo esa MAC. %u = usuario autenticado.
+
+user backend
+topic readwrite monitor/v1/#
+
+pattern write monitor/v1/nodes/%u/status
+pattern write monitor/v1/nodes/%u/telemetry
+pattern write monitor/v1/nodes/%u/event
+pattern write monitor/v1/nodes/%u/cmd/ack
+pattern write monitor/v1/nodes/%u/config/state
+pattern read monitor/v1/nodes/%u/cmd
+pattern read monitor/v1/nodes/%u/config/set

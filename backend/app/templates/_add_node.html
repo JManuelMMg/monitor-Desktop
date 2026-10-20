@@ -1,0 +1,107 @@
+{% from "_macros.html" import icon, hint %}
+<dialog class="modal" id="add-node-modal" aria-labelledby="add-node-title">
+    <header class="modal-head">
+        <h2 id="add-node-title">{{ icon('plus') }} Agregar nodo</h2>
+        <button class="icon-btn" type="button" data-close data-tip="Cerrar">{{ icon('x') }}</button>
+    </header>
+    <div class="modal-body">
+        <div class="stepper" aria-hidden="true">
+            <span class="st active" data-st="1"><b>1</b> Identificar</span>
+            <span class="bar" data-bar="1"><span></span></span>
+            <span class="st" data-st="2"><b>2</b> Credenciales</span>
+            <span class="bar" data-bar="2"><span></span></span>
+            <span class="st" data-st="3"><b>3</b> Conectar</span>
+        </div>
+
+        <!-- Paso 1 -->
+        <form class="wizard-step active" data-step="1" id="an-form" novalidate>
+            <div class="callout">
+                {{ icon('usb') }}
+                <span><strong>¿Dónde está la MAC?</strong> Conecta el ESP32 por USB con el firmware
+                <code>esp32_node</code> cargado y abre el monitor serie a <strong>115200</strong>. Al arrancar muestra
+                <code>Nodo a4cf12b3c4d5 fw 3.0.0</code>: esos 12 caracteres son la MAC. También sirve con dos puntos
+                (<code>A4:CF:12:B3:C4:D5</code>).</span>
+            </div>
+            <div class="form-grid">
+                <label class="span-2">MAC del ESP32
+                    <input name="mac" id="an-mac" required autocomplete="off" spellcheck="false" placeholder="A4:CF:12:B3:C4:D5" maxlength="17">
+                    <span class="help" id="an-mac-help">12 dígitos hexadecimales (0-9, A-F).</span>
+                </label>
+                <label>Nombre
+                    <input name="name" required maxlength="80" placeholder="Biodigestor 1">
+                    <span class="help">Cómo lo verás en el panel. Puedes cambiarlo después.</span>
+                </label>
+                <label>Zona / ubicación
+                    <input name="zone" maxlength="80" list="an-zones" placeholder="Patio norte">
+                    <span class="help">Agrupa los nodos. Mover el nodo = cambiar este campo.</span>
+                </label>
+                <datalist id="an-zones"></datalist>
+                <label class="span-2">Descripción <span class="help">(opcional)</span>
+                    <input name="description" maxlength="500" placeholder="Reactor de 200 L junto al invernadero">
+                </label>
+            </div>
+            <p class="banner banner-alarm hidden" id="an-error" role="alert"></p>
+        </form>
+
+        <!-- Paso 2 -->
+        <section class="wizard-step" data-step="2">
+            <div class="secret-box">
+                <div class="callout warn">{{ icon('key') }}<span><strong>Guarda esta clave ahora.</strong> Es la credencial MQTT del nodo y no se volverá a mostrar. Si la pierdes, en Administración puedes generar otra.</span></div>
+                <div class="form-grid">
+                    <label>Usuario MQTT (la MAC)<span class="copy-field"><code id="an-user"></code><button type="button" data-copy="an-user">{{ icon('copy') }}</button></span></label>
+                    <label>Clave MQTT<span class="copy-field"><code id="an-pass"></code><button type="button" data-copy="an-pass">{{ icon('copy') }}</button></span></label>
+                </div>
+            </div>
+            <p id="an-sync-warning" class="banner banner-warn hidden"></p>
+            <h3>Datos de red para el ESP32</h3>
+            <p class="muted">Se usan solo en tu navegador para armar la línea de abajo; la clave del WiFi no se envía al servidor.</p>
+            <div class="form-grid">
+                <label>WiFi (SSID)<input id="an-ssid" autocomplete="off" maxlength="32" placeholder="MiRed"></label>
+                <label>Clave del WiFi<input id="an-wifipass" type="password" autocomplete="new-password" maxlength="64"></label>
+                <label>IP de la Raspberry Pi
+                    <input id="an-host" autocomplete="off" placeholder="192.168.1.50">
+                    <span class="help">La IP fija de la Pi en tu red local.</span>
+                </label>
+                <label>Puerto MQTT TLS<input id="an-port" type="number" min="1" max="65535" value="8883"></label>
+            </div>
+            <label>Línea de aprovisionamiento
+                <span class="copy-field block"><code id="an-line"></code><button type="button" data-copy="an-line">{{ icon('copy') }} Copiar</button></span>
+            </label>
+        </section>
+
+        <!-- Paso 3 -->
+        <section class="wizard-step" data-step="3">
+            <ol class="checklist">
+                <li><span class="num">1</span><span>Comprueba que el firmware tiene el <code>ca_cert.h</code> generado en la Pi (<code>pki.sh export-firmware-header</code>).</span></li>
+                <li><span class="num">2</span><span>En el monitor serie (115200 baudios, fin de línea <strong>«Nueva línea»</strong>) pega la línea copiada y pulsa Enter.</span></li>
+                <li><span class="num">3</span><span>El ESP32 guarda los datos, se reinicia y se conecta por WiFi a la Pi. Su LED queda <strong>fijo</strong> al conectarse.</span></li>
+            </ol>
+            <div class="waiting" id="an-waiting">
+                <div class="radar"><span></span><span></span><span></span></div>
+                <div>
+                    <strong>Esperando la primera conexión de <span id="an-wait-name"></span>…</strong>
+                    <p class="muted">Puedes cerrar esta ventana: el nodo aparecerá en el panel en cuanto se conecte.</p>
+                </div>
+            </div>
+            <div class="success hidden" id="an-success">
+                <svg class="success-check" viewBox="0 0 84 84" aria-hidden="true"><circle cx="42" cy="42" r="38"/><path d="M26 43l11 11 21-23"/></svg>
+                <h2>¡<span id="an-ok-name"></span> está en línea!</h2>
+                <p class="muted">Ya está enviando lecturas. Recuerda calibrar el MQ-4 tras 3 minutos de calentamiento.</p>
+            </div>
+            {% call hint('Si no se conecta') %}
+            <ul>
+                <li>En el monitor serie busca <code>MQTT rechazado</code>: estado <code>5</code> = clave incorrecta, <code>-2</code> = no llega a la IP (firewall o IP equivocada).</li>
+                <li><code>TLS activo pero ca_cert.h no está configurado</code>: recompila con el certificado de la Pi.</li>
+                <li>Envía <code>{"cmd":"status"}</code> por el monitor serie para ver su estado de red.</li>
+            </ul>
+            {% endcall %}
+        </section>
+    </div>
+    <footer class="modal-foot">
+        <button class="btn btn-ghost" type="button" id="an-back">{{ icon('back') }} Atrás</button>
+        <div class="head-actions">
+            <button class="btn btn-ghost" type="button" data-close>Cerrar</button>
+            <button class="btn btn-primary" type="button" id="an-next">Registrar y generar clave {{ icon('chevron') }}</button>
+        </div>
+    </footer>
+</dialog>

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, hint %}
+{% block title %}Panel general{% endblock %}
+{% block content %}
+<section class="page-head">
+    <div>
+        <div class="eyebrow">{{ icon('grid') }} Panel general</div>
+        <h1>Hola, {{ user.username }}</h1>
+        <p class="lead">Así están tus nodos ahora mismo. Los valores se actualizan solos; haz clic en un nodo para ver su histórico, configurarlo o calibrarlo.</p>
+    </div>
+    <div class="head-actions">
+        <button class="btn btn-ghost" type="button" id="toggle-guide">{{ icon('help') }} Guía</button>
+        <button class="btn btn-primary admin-only" type="button" data-open-add-node>{{ icon('plus') }} Agregar nodo</button>
+    </div>
+</section>
+
+<div id="broker-warning" class="banner banner-warn hidden">{{ icon('alert') }}<span>El servidor perdió la conexión con el broker MQTT: los datos en vivo están detenidos hasta que se recupere.</span></div>
+<div id="alarm-banner" class="banner banner-alarm hidden">{{ icon('alert') }}<span id="alarm-text"></span></div>
+
+<section class="card guide hidden" id="guide">
+    <div class="guide-head">
+        <div>
+            <h2>Primeros pasos</h2>
+            <p class="muted" id="guide-summary">Completa estos pasos para dejar el sistema funcionando.</p>
+        </div>
+        <button class="icon-btn" type="button" id="close-guide" data-tip="Ocultar guía">{{ icon('x') }}</button>
+    </div>
+    <div class="guide-progress"><span id="guide-bar"></span></div>
+    <ol class="steps" id="guide-steps">
+        <li class="step" data-step="nodes"><span class="step-mark"><b>1</b>{{ icon('check') }}</span><div><strong>Agrega tus nodos</strong><span class="step-desc">Botón «Agregar nodo»: registra la MAC del ESP32 y obtén su clave.</span></div></li>
+        <li class="step" data-step="online"><span class="step-mark"><b>2</b>{{ icon('check') }}</span><div><strong>Conéctalos</strong><span class="step-desc">Pega la línea de aprovisionamiento en el monitor serie del ESP32.</span></div></li>
+        <li class="step" data-step="zones"><span class="step-mark"><b>3</b>{{ icon('check') }}</span><div><strong>Asigna zonas</strong><span class="step-desc">En cada nodo indica dónde está; así se agrupan aquí.</span></div></li>
+        <li class="step" data-step="calibrated"><span class="step-mark"><b>4</b>{{ icon('check') }}</span><div><strong>Calibra el MQ-4</strong><span class="step-desc">Tras 3 min de calentamiento, en aire limpio: Nodo › Acciones.</span></div></li>
+        <li class="step" data-step="users"><span class="step-mark"><b>5</b>{{ icon('check') }}</span><div><strong>Invita a tu equipo</strong><span class="step-desc">Administración › Usuarios, con el rol adecuado para cada persona.</span></div></li>
+    </ol>
+</section>
+
+<section class="kpis" id="kpis">
+    <div class="card kpi" data-i="0"><span class="kpi-icon">{{ icon('wifi') }}</span><div><div class="kpi-value" id="kpi-online">–</div><div class="kpi-label">Nodos en línea</div></div></div>
+    <div class="card kpi danger" id="kpi-alarm-card" data-i="1"><span class="kpi-icon">{{ icon('alert') }}</span><div><div class="kpi-value" id="kpi-alarms">–</div><div class="kpi-label">Alarmas activas</div></div></div>
+    <div class="card kpi kpi-temp" data-i="2"><span class="kpi-icon">{{ icon('temp') }}</span><div><div class="kpi-value" id="kpi-temp">–</div><div class="kpi-label">Temperatura media</div></div></div>
+    <div class="card kpi kpi-ch4" data-i="3"><span class="kpi-icon">{{ icon('flame') }}</span><div><div class="kpi-value" id="kpi-ch4">–</div><div class="kpi-label">CH₄ medio</div></div></div>
+    <div class="card kpi" data-i="4"><span class="kpi-icon">{{ icon('clock') }}</span><div><div class="kpi-value" id="kpi-last">–</div><div class="kpi-label">Último dato recibido</div></div></div>
+</section>
+
+<div class="section-title">
+    <h2>{{ icon('brain') }} Modelo de ML</h2>
+</div>
+<section class="ml-slot" id="ml-panel" data-ml-slot aria-label="Espacio para las interfaces del modelo de ML"></section>
+
+<div class="section-title">
+    <h2>{{ icon('cpu') }} Nodos</h2>
+</div>
+<div class="filters">
+    <div class="chips" id="zone-chips"></div>
+    <div class="chips" id="state-chips">
+        <button class="chip active" type="button" data-state="">Todos</button>
+        <button class="chip" type="button" data-state="alarm">{{ icon('alert') }} En alarma</button>
+        <button class="chip" type="button" data-state="offline">Sin conexión</button>
+    </div>
+    <label class="search">{{ icon('search') }}<input id="search" type="search" placeholder="Buscar por nombre, zona o MAC" aria-label="Buscar nodos"></label>
+</div>
+
+<section id="node-groups"></section>
+
+<section class="card empty hidden" id="empty-state">
+    <div class="empty-art">{{ icon('cpu') }}</div>
+    <h2>Aún no hay nodos</h2>
+    <p>Registra la MAC de tu primer ESP32 y el asistente te dará la línea que hay que pegar en su monitor serie. En cuanto se conecte aparecerá aquí, en vivo.</p>
+    <button class="btn btn-primary admin-only" type="button" data-open-add-node>{{ icon('plus') }} Agregar mi primer nodo</button>
+    <p class="viewer-only">Pide a un administrador que registre los nodos.</p>
+</section>
+<p class="muted hidden" id="no-match">Ningún nodo coincide con el filtro.</p>
+
+{% include "_add_node.html" %}
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/nodecard.js"></script>
+<script src="/static/js/addnode.js"></script>
+<script src="/static/js/dashboard.js"></script>
+{% endblock %}

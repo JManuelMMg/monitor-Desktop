@@ -1,0 +1,11 @@
+{% macro icon(name, cls="") -%}
+<svg class="ic {{ cls }}" aria-hidden="true"><use href="#i-{{ name }}"/></svg>
+{%- endmacro %}
+
+{# Bloque de ayuda plegable: título + contenido explicativo. #}
+{% macro hint(title, open=False) -%}
+<details class="hint" {{ 'open' if open }}>
+    <summary>{{ icon('help') }}<span>{{ title }}</span>{{ icon('chevron', 'hint-arrow') }}</summary>
+    <div class="hint-body">{{ caller() }}</div>
+</details>
+{%- endmacro %}

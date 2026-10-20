@@ -1,0 +1,4 @@
+# App de escritorio Windows (sin Node/Electron). WebView2 viene con Windows 10/11.
+pywebview==6.2.1
+# Solo para generar el .exe (build.ps1):
+pyinstaller==6.22.3

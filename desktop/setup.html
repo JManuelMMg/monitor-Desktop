@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Conexión · Monitor multi-nodo</title>
+<style>
+    body { margin: 0; background: #0b0f14; color: #e6edf3; font: 15px "Segoe UI", system-ui, sans-serif; }
+    main { max-width: 620px; margin: 8vh auto; background: #121922; border: 1px solid #243040; border-radius: 10px; padding: 2rem; }
+    h1 { margin-top: 0; letter-spacing: .06em; } h1 span { color: #2dd4bf; }
+    p, li { color: #8b98a8; line-height: 1.5; }
+    textarea { width: 100%; box-sizing: border-box; min-height: 90px; background: #0b0f14; color: #e6edf3; border: 1px solid #243040; border-radius: 8px; padding: .6rem; font: 14px Consolas, monospace; }
+    button { font: inherit; padding: .55rem 1rem; border-radius: 8px; border: 1px solid #2dd4bf; background: #2dd4bf; color: #05221e; font-weight: 600; cursor: pointer; margin-right: .5rem; }
+    button.ghost { background: transparent; color: #e6edf3; border-color: #243040; }
+    #msg { min-height: 1.5em; } .err { color: #ef4444; } .ok { color: #22c55e; }
+    code { background: #18212c; padding: 0 .3em; border-radius: 4px; color: #e6edf3; }
+</style>
+</head>
+<body>
+<main>
+    <h1>MONITOR <span>MULTI-NODO</span></h1>
+    <p id="intro">No se pudo conectar con la Raspberry Pi.</p>
+    <ul>
+        <li>En casa: la PC debe estar en la misma red que la Pi.</li>
+        <li>Fuera de casa: activa el túnel WireGuard antes de abrir la app.</li>
+        <li>La CA de la Pi debe estar instalada en Windows (<code>instalar_ca.ps1</code>).</li>
+    </ul>
+    <label for="servers"><p>Servidores, uno por línea, en orden de preferencia (red local primero, VPN después):</p></label>
+    <textarea id="servers" spellcheck="false"></textarea>
+    <p id="msg"></p>
+    <button id="save" type="button">Guardar y conectar</button>
+    <button id="retry" class="ghost" type="button">Reintentar</button>
+    <p><small id="cfg"></small></p>
+</main>
+<script>
+    const msg = (text, cls) => { const el = document.getElementById("msg"); el.textContent = text; el.className = cls || ""; };
+    async function connect() {
+        msg("Probando servidores…");
+        const res = await window.pywebview.api.retry();
+        if (!res.ok) msg(res.error, "err");
+    }
+    window.addEventListener("pywebviewready", async () => {
+        const cfg = await window.pywebview.api.get_config();
+        document.getElementById("servers").value = cfg.servers.join("\n");
+        document.getElementById("cfg").textContent = "Configuración: " + cfg.config_file;
+        if (new URLSearchParams(location.search).has("offline")) {
+            document.getElementById("intro").textContent = "Se perdió la conexión con la Raspberry Pi. Se reintentará sola.";
+        }
+    });
+    document.getElementById("save").addEventListener("click", async () => {
+        const servers = document.getElementById("servers").value.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
+        const res = await window.pywebview.api.save_servers(servers);
+        if (!res.ok) { msg(res.error, "err"); return; }
+        await connect();
+    });
+    document.getElementById("retry").addEventListener("click", connect);
+</script>
+</body>
+</html>

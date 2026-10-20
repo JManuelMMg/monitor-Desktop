@@ -1,0 +1,13 @@
+# /etc/mosquitto/acl
+# Backend: acceso total al árbol del sistema
+user backend
+topic readwrite monitor/v1/#
+
+# Cada nodo usa como usuario su propia MAC (12 hex). %u se sustituye por el usuario.
+pattern write monitor/v1/%u/status
+pattern write monitor/v1/%u/meta
+pattern write monitor/v1/%u/telemetry
+pattern write monitor/v1/%u/event
+pattern write monitor/v1/%u/cmd/ack
+pattern read  monitor/v1/%u/config
+pattern read  monitor/v1/%u/cmd

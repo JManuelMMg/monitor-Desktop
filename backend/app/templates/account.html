@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% from "_macros.html" import icon, hint %}
+{% block title %}Mi cuenta{% endblock %}
+{% block content %}
+<section class="page-head">
+    <div>
+        <div class="eyebrow">{{ icon('user') }} Mi cuenta</div>
+        <h1>{{ user.username }}</h1>
+        <p class="lead">Rol: <strong>{{ {'admin': 'Administrador', 'operator': 'Operador', 'viewer': 'Solo lectura'}[user.role] }}</strong>. Si necesitas otros permisos, pídeselo a un administrador.</p>
+    </div>
+</section>
+<div class="grid-2">
+    <section class="card" data-reveal data-i="1">
+        <div class="card-head"><h2>{{ icon('key') }} Cambiar contraseña</h2></div>
+        <p class="card-sub">Al cambiarla se cierran tus sesiones en los demás equipos (esta sigue abierta).</p>
+        <form id="password-form" class="form-grid">
+            <label class="span-2">Contraseña actual <input name="current_password" type="password" required autocomplete="current-password"></label>
+            <label class="span-2">Nueva contraseña
+                <input name="new_password" id="new-pw" type="password" required minlength="10" maxlength="128" autocomplete="new-password">
+                <span class="guide-progress"><span id="pw-meter"></span></span>
+                <span class="help" id="pw-help">Mínimo 10 caracteres. Mejor una frase larga que una palabra rara.</span>
+            </label>
+            <label class="span-2">Repetir nueva <input name="repeat" type="password" required minlength="10" maxlength="128" autocomplete="new-password"></label>
+            <div class="form-actions span-2"><button class="btn btn-primary" type="submit">{{ icon('check') }} Cambiar contraseña</button></div>
+        </form>
+    </section>
+    <section class="card" data-reveal data-i="2">
+        <div class="card-head"><h2>{{ icon('shield') }} Seguridad de tu sesión</h2></div>
+        <ul class="checklist">
+            <li><span class="num">{{ icon('check') }}</span><span>Tu sesión se guarda en una cookie que el JavaScript no puede leer y caduca a las 12 horas.</span></li>
+            <li><span class="num">{{ icon('check') }}</span><span>Fuera de casa, el panel solo es accesible a través de la VPN WireGuard.</span></li>
+            <li><span class="num">{{ icon('check') }}</span><span>Tras 5 intentos fallidos el acceso se bloquea 15 minutos.</span></li>
+        </ul>
+    </section>
+</div>
+{% endblock %}
+{% block scripts %}<script src="/static/js/account.js"></script>{% endblock %}

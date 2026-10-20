@@ -1,0 +1,45 @@
+[Unit]
+Description=Monitor multi-nodo - backend FastAPI
+After=network-online.target mosquitto.service
+Wants=network-online.target mosquitto.service
+
+[Service]
+Type=simple
+User=monitor
+Group=monitor
+WorkingDirectory=/opt/monitor/backend
+EnvironmentFile=/etc/monitor/monitor.env
+# Un solo worker: el estado en vivo y el puente MQTT viven en este proceso.
+ExecStart=/opt/monitor/venv/bin/uvicorn app.main:app \
+    --host 0.0.0.0 --port 8443 --workers 1 \
+    --ssl-keyfile /etc/monitor/tls/server.key \
+    --ssl-certfile /etc/monitor/tls/server.crt \
+    --no-server-header --log-level info
+Restart=always
+RestartSec=5
+
+# Endurecimiento
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ReadWritePaths=/var/lib/monitor /var/lib/monitor-mqtt
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+CapabilityBoundingSet=
+AmbientCapabilities=
+SystemCallArchitectures=native
+UMask=0027
+
+[Install]
+WantedBy=multi-user.target

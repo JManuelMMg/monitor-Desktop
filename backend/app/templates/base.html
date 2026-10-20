@@ -1,0 +1,62 @@
+{% from "_macros.html" import icon %}<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#0f1720">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="apple-touch-icon" href="/static/icons/apple-touch-icon.png">
+    <title>{% block title %}Monitor{% endblock %} · Monitor multi-nodo</title>
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body data-page="{{ page or '' }}" data-role="{{ user.role if user else '' }}">
+{% include "_icons.html" %}
+{% if user %}
+<div class="shell">
+    <aside class="sidebar" id="sidebar">
+        <a class="brand" href="/">
+            <span class="brand-mark">{{ icon('zap') }}</span>
+            <span class="brand-text">MONITOR<small>multi-nodo</small></span>
+        </a>
+        <nav class="side-nav">
+            <a href="/" class="{{ 'active' if page in ('dashboard', 'node') }}">{{ icon('grid') }}<span>Panel general</span></a>
+            {% if user.role == 'admin' %}
+            <a href="/admin" class="{{ 'active' if page == 'admin' }}">{{ icon('shield') }}<span>Administración</span></a>
+            {% endif %}
+            <a href="/connection" class="{{ 'active' if page == 'connection' }}">{{ icon('wifi') }}<span>Conexión</span></a>
+            <a href="/account" class="{{ 'active' if page == 'account' }}">{{ icon('user') }}<span>Mi cuenta</span></a>
+        </nav>
+        <div class="side-foot">
+            <button class="btn btn-ghost side-install hidden" type="button" data-install>{{ icon('download') }} Instalar como app</button>
+            <div class="side-status">
+                <span class="live-dot" id="live-dot"></span>
+                <span id="link-state">Conectando…</span>
+            </div>
+            <div class="side-user">
+                <span class="avatar">{{ user.username[:1] | upper }}</span>
+                <span class="side-user-text">{{ user.username }}<small>{{ {'admin': 'Administrador', 'operator': 'Operador', 'viewer': 'Solo lectura'}[user.role] }}</small></span>
+                <button id="logout-btn" class="icon-btn" type="button" data-tip="Cerrar sesión">{{ icon('logout') }}</button>
+            </div>
+        </div>
+    </aside>
+    <div class="main">
+        <header class="mobile-bar">
+            <button class="icon-btn" id="menu-btn" type="button" aria-label="Menú">{{ icon('menu') }}</button>
+            <span class="brand-text">MONITOR<small>multi-nodo</small></span>
+        </header>
+        <main class="content">
+        {% block content %}{% endblock %}
+        </main>
+    </div>
+</div>
+{% else %}
+{% block public %}{% endblock %}
+{% endif %}
+<div id="toasts" class="toasts" role="status" aria-live="polite"></div>
+<script src="/static/js/common.js"></script>
+<script src="/static/js/netlink.js"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>
