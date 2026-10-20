@@ -27,8 +27,16 @@ python -m venv .venv
 
 ## Primer uso en cada PC
 
-1. Copia la CA de la Pi:
-   `scp pi@192.168.1.50:/etc/monitor/tls/ca.crt .`
+1. Copia la CA de la Pi. `/etc/monitor` solo lo lee root, así que primero
+   sácala a tu carpeta en la Pi y después cópiala:
+   ```bash
+   # En la Pi
+   sudo cp /etc/monitor/tls/ca.crt ~/ca.crt && sudo chown "$USER" ~/ca.crt
+   ```
+   ```powershell
+   # En Windows
+   scp usuario@192.168.1.50:~/ca.crt .
+   ```
 2. Impórtala: `.\instalar_ca.ps1 -Ruta .\ca.crt`. No necesita administrador.
    Compara la huella que muestra con la de la Pi.
 3. Abre la app. Si no encuentra la Pi, aparece una pantalla para escribir los

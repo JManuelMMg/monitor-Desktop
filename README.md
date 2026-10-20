@@ -13,7 +13,10 @@ muestra el panel. No usa Node.js ni NPM en ninguna parte.
 | `deploy/` | Mosquitto (configuración y ACL), systemd, cortafuegos, PKI, WireGuard y scripts de instalación y aprovisionamiento. |
 | `docs/` | `ARQUITECTURA.md` (tópicos, API, seguridad), `DESPLIEGUE_PI.md`, `CONECTIVIDAD.md`, `INTEGRACION_ML.md` (cómo conectar el modelo de ML). |
 
-Por dónde empezar: lee `docs/ARQUITECTURA.md` y después
+**Por dónde empezar:** [`docs/GUIA_PASO_A_PASO.md`](docs/GUIA_PASO_A_PASO.md)
+explica, paso a paso y desde cero, cómo preparar la Raspberry Pi, dejar el
+broker MQTT funcionando, usar el panel web y la app de escritorio, y conectar
+los ESP32. Para el detalle técnico están `docs/ARQUITECTURA.md` y
 `docs/DESPLIEGUE_PI.md`.
 
 ## Legado
