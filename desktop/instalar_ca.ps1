@@ -3,7 +3,9 @@
 # certificado HTTPS de la Pi sin advertencias.
 #
 # Uso:  .\instalar_ca.ps1 -Ruta .\ca.crt
-# Copia ca.crt desde la Pi:  scp usuario@IP_PI:/etc/monitor/tls/ca.crt .
+# Copia ca.crt desde la Pi. /etc/monitor solo lo lee root, asi que primero
+# en la Pi:      sudo cp /etc/monitor/tls/ca.crt ~/ca.crt && sudo chown $USER ~/ca.crt
+# y en Windows:  scp usuario@IP_PI:~/ca.crt .
 param([Parameter(Mandatory = $true)][string]$Ruta)
 $ErrorActionPreference = "Stop"
 
