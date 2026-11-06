@@ -21,6 +21,8 @@ struct Reading {
   bool usOk = false;
   float distCm = NAN;
   float levelPct = NAN;
+
+  float vbusV = NAN;       // bus de 12 V: con luz es el adaptador, no la batería
 };
 
 enum class CalResult { Running, Done, Failed };

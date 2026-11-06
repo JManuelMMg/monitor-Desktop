@@ -9,6 +9,7 @@
     <link rel="apple-touch-icon" href="/static/icons/apple-touch-icon.png">
     <title>{% block title %}Monitor{% endblock %} · Monitor multi-nodo</title>
     <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+    <script src="/static/js/theme.js"></script>
     <link rel="stylesheet" href="/static/css/app.css">
 </head>
 <body data-page="{{ page or '' }}" data-role="{{ user.role if user else '' }}">
@@ -33,6 +34,7 @@
             <div class="side-status">
                 <span class="live-dot" id="live-dot"></span>
                 <span id="link-state">Conectando…</span>
+                <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Cambiar tema" data-tip="Tema claro / oscuro">{{ icon('moon', 'ic-moon') }}{{ icon('sun', 'ic-sun') }}</button>
             </div>
             <div class="side-user">
                 <span class="avatar">{{ user.username[:1] | upper }}</span>
@@ -45,6 +47,7 @@
         <header class="mobile-bar">
             <button class="icon-btn" id="menu-btn" type="button" aria-label="Menú">{{ icon('menu') }}</button>
             <span class="brand-text">MONITOR<small>multi-nodo</small></span>
+            <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Cambiar tema">{{ icon('moon', 'ic-moon') }}{{ icon('sun', 'ic-sun') }}</button>
         </header>
         <main class="content">
         {% block content %}{% endblock %}
@@ -52,6 +55,7 @@
     </div>
 </div>
 {% else %}
+<button class="icon-btn theme-toggle theme-float" type="button" data-theme-toggle aria-label="Cambiar tema" data-tip="Tema claro / oscuro">{{ icon('moon', 'ic-moon') }}{{ icon('sun', 'ic-sun') }}</button>
 {% block public %}{% endblock %}
 {% endif %}
 <div id="toasts" class="toasts" role="status" aria-live="polite"></div>

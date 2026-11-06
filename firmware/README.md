@@ -12,6 +12,12 @@ El nombre y la zona se asignan en el panel, sin recompilar.
 | AJ-SR04M TRIG / ECHO | 5 / 18 |
 | MH-Z19C TX → RX2 / RX ← TX2 | 16 / 17 |
 | LED de estado | 2 |
+| Bus de 12 V (R6/R7) | 35 |
+| LED de alarma CH4 / CO2 / nivel / temperatura | 25 / 26 / 27 / 14 |
+
+Los LED de alarma usan límites fijos en `config.h`, iguales a los predeterminados del panel: los cambios por
+nodo hechos en el panel no llegan a ellos. `vbus_v` se publica en la telemetría; con luz mide el adaptador y solo
+durante un apagón mide la batería.
 
 ## Compilar
 
@@ -76,8 +82,10 @@ Estos funcionan aunque no haya red:
 ## Notas sobre los sensores
 
 - **MQ-4**: tarda 3 min en calentar. Hasta entonces y sin R0, `ch4_ppm` llega
-  como `null`. Si lo alimentas a 5 V, su salida debe pasar por un divisor
-  antes del GPIO34, que admite como máximo unos 3,1 V.
+  como `null`. Su salida llega al GPIO34 por el divisor R1/R2 de la placa
+  (factor 0.6, `MQ4_ADC_RATIO`) y el firmware lo descuenta. Sin ese divisor,
+  el GPIO34 recibiría más de los 3,1 V que admite. Al actualizar desde una
+  versión anterior hay que repetir `calibrate_mq4`: el R0 anterior se ignora.
 - **MH-Z19C**: la autocalibración ABC viene apagada, porque en un biodigestor
   el CO₂ nunca baja a 400 ppm. Se puede activar por configuración.
 - **Ultrasonido**: lleva un filtro de media móvil de 10 muestras. El offset,

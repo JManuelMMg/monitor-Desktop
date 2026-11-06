@@ -1,0 +1,1148 @@
+{
+  ".claude/launch.json": {
+    "mtime": 1792358560.3157854,
+    "seen": 1793079003.0728607,
+    "ast_hash": "65531e445d42e222d1fc20a40a5e72b8",
+    "semantic_hash": "65531e445d42e222d1fc20a40a5e72b8"
+  },
+  ".vscode/settings.json": {
+    "mtime": 1791488721.9017575,
+    "seen": 1793079003.0728607,
+    "ast_hash": "99914b932bd37a50b983c5e7c90ae93b",
+    "semantic_hash": "99914b932bd37a50b983c5e7c90ae93b"
+  },
+  "backend/app/__init__.py": {
+    "mtime": 1792358102.304287,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "backend/app/cli.py": {
+    "mtime": 1792362179.0040576,
+    "seen": 1793079003.0728607,
+    "ast_hash": "2bee90246775e7a978addab21622451d",
+    "semantic_hash": "2bee90246775e7a978addab21622451d"
+  },
+  "backend/app/config.py": {
+    "mtime": 1792363411.9626298,
+    "seen": 1793079003.0728607,
+    "ast_hash": "1ea7927fad084a922938460266a9b495",
+    "semantic_hash": "1ea7927fad084a922938460266a9b495"
+  },
+  "backend/app/db.py": {
+    "mtime": 1792362074.8259022,
+    "seen": 1793079003.0728607,
+    "ast_hash": "84599090e48a23a741c31bdad374d19f",
+    "semantic_hash": "84599090e48a23a741c31bdad374d19f"
+  },
+  "backend/app/deps.py": {
+    "mtime": 1792361438.8218744,
+    "seen": 1793079003.0728607,
+    "ast_hash": "704a4a5b2f64d019b879ed18918ea544",
+    "semantic_hash": "704a4a5b2f64d019b879ed18918ea544"
+  },
+  "backend/app/hub.py": {
+    "mtime": 1792358047.516287,
+    "seen": 1793079003.0728607,
+    "ast_hash": "05f398f630f83e3bcae211c76b3a4694",
+    "semantic_hash": "05f398f630f83e3bcae211c76b3a4694"
+  },
+  "backend/app/main.py": {
+    "mtime": 1792363429.5876403,
+    "seen": 1793079003.0728607,
+    "ast_hash": "3322c0b0e449482281bdaf62c2c7db3e",
+    "semantic_hash": "3322c0b0e449482281bdaf62c2c7db3e"
+  },
+  "backend/app/mqtt_auth.py": {
+    "mtime": 1792362129.5968323,
+    "seen": 1793079003.0728607,
+    "ast_hash": "3e9067ea894d012ba6ec255e1b526dde",
+    "semantic_hash": "3e9067ea894d012ba6ec255e1b526dde"
+  },
+  "backend/app/mqtt_bridge.py": {
+    "mtime": 1792358047.969337,
+    "seen": 1793079003.0728607,
+    "ast_hash": "1dec48f60d164eff15462f2d8dc9aee0",
+    "semantic_hash": "1dec48f60d164eff15462f2d8dc9aee0"
+  },
+  "backend/app/persistence.py": {
+    "mtime": 1792358491.9270096,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d950fb41aa00123b4226b0a7244fccc7",
+    "semantic_hash": "d950fb41aa00123b4226b0a7244fccc7"
+  },
+  "backend/app/routers/__init__.py": {
+    "mtime": 1792358102.3039553,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "backend/app/routers/auth.py": {
+    "mtime": 1792361438.8050838,
+    "seen": 1793079003.0728607,
+    "ast_hash": "a488577a6d0b1045f16b88b5c1af9c99",
+    "semantic_hash": "a488577a6d0b1045f16b88b5c1af9c99"
+  },
+  "backend/app/routers/devices.py": {
+    "mtime": 1792362152.9640198,
+    "seen": 1793079003.0728607,
+    "ast_hash": "46808cede14fd1459e4da772f2603abb",
+    "semantic_hash": "46808cede14fd1459e4da772f2603abb"
+  },
+  "backend/app/routers/live.py": {
+    "mtime": 1792358133.730449,
+    "seen": 1793079003.0728607,
+    "ast_hash": "1d1f0b20989a948696432802798c903c",
+    "semantic_hash": "1d1f0b20989a948696432802798c903c"
+  },
+  "backend/app/routers/pages.py": {
+    "mtime": 1792363429.5037773,
+    "seen": 1793079003.0728607,
+    "ast_hash": "e846db7bb25fd835c83769dcb2e0bcb9",
+    "semantic_hash": "e846db7bb25fd835c83769dcb2e0bcb9"
+  },
+  "backend/app/routers/system.py": {
+    "mtime": 1792363429.5334003,
+    "seen": 1793079003.0728607,
+    "ast_hash": "5d74743834ebd05f6d1d25679b7dcb05",
+    "semantic_hash": "5d74743834ebd05f6d1d25679b7dcb05"
+  },
+  "backend/app/routers/users.py": {
+    "mtime": 1792361438.8024325,
+    "seen": 1793079003.0728607,
+    "ast_hash": "a4a3e07ae83d6ac30a39cbedad137a32",
+    "semantic_hash": "a4a3e07ae83d6ac30a39cbedad137a32"
+  },
+  "backend/app/schemas.py": {
+    "mtime": 1792362086.174405,
+    "seen": 1793079003.0728607,
+    "ast_hash": "e744cbfecd26d8c57f707623c30898a6",
+    "semantic_hash": "e744cbfecd26d8c57f707623c30898a6"
+  },
+  "backend/app/security.py": {
+    "mtime": 1792357677.3937826,
+    "seen": 1793079003.0728607,
+    "ast_hash": "6e17c177de56ec588eadc98d9f54a4cc",
+    "semantic_hash": "6e17c177de56ec588eadc98d9f54a4cc"
+  },
+  "backend/app/services.py": {
+    "mtime": 1792362152.80767,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d4e0efca09aa96dc85f82f3a0d3d6f70",
+    "semantic_hash": "d4e0efca09aa96dc85f82f3a0d3d6f70"
+  },
+  "backend/app/state.py": {
+    "mtime": 1792362890.6612904,
+    "seen": 1793079003.0728607,
+    "ast_hash": "fdc21344d010efeb5f4ae1a2f9913ce7",
+    "semantic_hash": "fdc21344d010efeb5f4ae1a2f9913ce7"
+  },
+  "backend/app/static/js/account.js": {
+    "mtime": 1792362849.0616271,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d4bf7177ec7f32a291cd21c61a48b3b0",
+    "semantic_hash": "d4bf7177ec7f32a291cd21c61a48b3b0"
+  },
+  "backend/app/static/js/addnode.js": {
+    "mtime": 1792362998.9186602,
+    "seen": 1793079003.0728607,
+    "ast_hash": "eae1be2f8fc3c43e5cfc42742c18b182",
+    "semantic_hash": "eae1be2f8fc3c43e5cfc42742c18b182"
+  },
+  "backend/app/static/js/admin.js": {
+    "mtime": 1792363093.81918,
+    "seen": 1793079003.0728607,
+    "ast_hash": "1d197d2e9c83a94dc11d77e878923b61",
+    "semantic_hash": "1d197d2e9c83a94dc11d77e878923b61"
+  },
+  "backend/app/static/js/chart.js": {
+    "mtime": 1792363038.169804,
+    "seen": 1793079003.0728607,
+    "ast_hash": "fdbe514cb8b7b360f5d467e91b694537",
+    "semantic_hash": "fdbe514cb8b7b360f5d467e91b694537"
+  },
+  "backend/app/static/js/common.js": {
+    "mtime": 1792363499.987615,
+    "seen": 1793079003.0728607,
+    "ast_hash": "7eac19b13f87623b9e0de304acb85c4f",
+    "semantic_hash": "7eac19b13f87623b9e0de304acb85c4f"
+  },
+  "backend/app/static/js/connection.js": {
+    "mtime": 1792363555.2614567,
+    "seen": 1793079003.0728607,
+    "ast_hash": "550f01e215c86c76bb400fe5f1619360",
+    "semantic_hash": "550f01e215c86c76bb400fe5f1619360"
+  },
+  "backend/app/static/js/dashboard.js": {
+    "mtime": 1792362649.3660896,
+    "seen": 1793079003.0728607,
+    "ast_hash": "dbbe3e9d288a71aaab11352f472988df",
+    "semantic_hash": "dbbe3e9d288a71aaab11352f472988df"
+  },
+  "backend/app/static/js/login.js": {
+    "mtime": 1792362468.1733239,
+    "seen": 1793079003.0728607,
+    "ast_hash": "ff2009ae498896d5a07964f18a63797c",
+    "semantic_hash": "ff2009ae498896d5a07964f18a63797c"
+  },
+  "backend/app/static/js/netlink.js": {
+    "mtime": 1792363522.2116983,
+    "seen": 1793079003.0728607,
+    "ast_hash": "9be8036dd7720dd804f3a336a6a374ec",
+    "semantic_hash": "9be8036dd7720dd804f3a336a6a374ec"
+  },
+  "backend/app/static/js/node.js": {
+    "mtime": 1792362757.7546043,
+    "seen": 1793079003.0728607,
+    "ast_hash": "fe0994afb69b359413beff22ed22e70b",
+    "semantic_hash": "fe0994afb69b359413beff22ed22e70b"
+  },
+  "backend/app/static/js/nodecard.js": {
+    "mtime": 1792362946.984946,
+    "seen": 1793079003.0728607,
+    "ast_hash": "3cb68f1e583de13fd7587f4492710a73",
+    "semantic_hash": "3cb68f1e583de13fd7587f4492710a73"
+  },
+  "backend/app/static/js/offline.js": {
+    "mtime": 1792363572.2140114,
+    "seen": 1793079003.0728607,
+    "ast_hash": "98ac4ae55c29a3dba6284d0eb746d8a9",
+    "semantic_hash": "98ac4ae55c29a3dba6284d0eb746d8a9"
+  },
+  "backend/app/static/js/sw.js": {
+    "mtime": 1792363499.9889514,
+    "seen": 1793079003.0728607,
+    "ast_hash": "a889154de0454ee7d1efa938250ceab2",
+    "semantic_hash": "a889154de0454ee7d1efa938250ceab2"
+  },
+  "backend/app/topics.py": {
+    "mtime": 1792357676.9320185,
+    "seen": 1793079003.0728607,
+    "ast_hash": "87f7b94fc39c80023b3cea7e6f83788e",
+    "semantic_hash": "87f7b94fc39c80023b3cea7e6f83788e"
+  },
+  "backend/tests/__init__.py": {
+    "mtime": 1792358472.0841506,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "backend/tests/conftest.py": {
+    "mtime": 1792358463.3877783,
+    "seen": 1793079003.0728607,
+    "ast_hash": "df03b23ca20e11810f0508fa423f22b6",
+    "semantic_hash": "df03b23ca20e11810f0508fa423f22b6"
+  },
+  "backend/tests/demo_server.py": {
+    "mtime": 1792363629.4333456,
+    "seen": 1793079003.0728607,
+    "ast_hash": "59617a0ad50998556c842cd7ee32713c",
+    "semantic_hash": "59617a0ad50998556c842cd7ee32713c"
+  },
+  "backend/tests/fake_db.py": {
+    "mtime": 1792362198.1507428,
+    "seen": 1793079003.0728607,
+    "ast_hash": "549561b830f772094a47ce8140156613",
+    "semantic_hash": "549561b830f772094a47ce8140156613"
+  },
+  "backend/tests/test_api.py": {
+    "mtime": 1792363581.530585,
+    "seen": 1793079003.0728607,
+    "ast_hash": "cc48dd27b83930c8e88e6cd5516a7b66",
+    "semantic_hash": "cc48dd27b83930c8e88e6cd5516a7b66"
+  },
+  "backend/tests/test_mqtt_bridge.py": {
+    "mtime": 1792359235.840243,
+    "seen": 1793079003.0728607,
+    "ast_hash": "2495989a6cfb50217f9fe19ef7d7d76f",
+    "semantic_hash": "2495989a6cfb50217f9fe19ef7d7d76f"
+  },
+  "backend/tests/test_units.py": {
+    "mtime": 1792362209.0542867,
+    "seen": 1793079003.0728607,
+    "ast_hash": "90a8459ebc92dfd368adc3b74781180c",
+    "semantic_hash": "90a8459ebc92dfd368adc3b74781180c"
+  },
+  "backend_fork/app/__init__.py": {
+    "mtime": 1792356439.4157364,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "backend_fork/app/db.py": {
+    "mtime": 1792356466.5453305,
+    "seen": 1793079003.0728607,
+    "ast_hash": "4db53980ba044366fa40e2ef7ec342a6",
+    "semantic_hash": "4db53980ba044366fa40e2ef7ec342a6"
+  },
+  "backend_fork/app/hub.py": {
+    "mtime": 1792356518.0928655,
+    "seen": 1793079003.0728607,
+    "ast_hash": "6628595f713539475bc8db74b8b937e0",
+    "semantic_hash": "6628595f713539475bc8db74b8b937e0"
+  },
+  "backend_fork/app/main.py": {
+    "mtime": 1792356554.2553892,
+    "seen": 1793079003.0728607,
+    "ast_hash": "f25040bf36e059c1edf16c3f60dfcd2b",
+    "semantic_hash": "f25040bf36e059c1edf16c3f60dfcd2b"
+  },
+  "backend_fork/app/mqtt_service.py": {
+    "mtime": 1792356518.9450126,
+    "seen": 1793079003.0728607,
+    "ast_hash": "ac70eac3204d86e64686efd1aa18d64e",
+    "semantic_hash": "ac70eac3204d86e64686efd1aa18d64e"
+  },
+  "backend_fork/app/routers/__init__.py": {
+    "mtime": 1792356567.032645,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "backend_fork/app/routers/auth.py": {
+    "mtime": 1792356538.1652825,
+    "seen": 1793079003.0728607,
+    "ast_hash": "0556491c28b525d6be488a170e22cc63",
+    "semantic_hash": "0556491c28b525d6be488a170e22cc63"
+  },
+  "backend_fork/app/routers/data.py": {
+    "mtime": 1792356553.5945137,
+    "seen": 1793079003.0728607,
+    "ast_hash": "97fdec12c0b6537d8b9773111fdcbaa2",
+    "semantic_hash": "97fdec12c0b6537d8b9773111fdcbaa2"
+  },
+  "backend_fork/app/routers/devices.py": {
+    "mtime": 1792356552.7977605,
+    "seen": 1793079003.0728607,
+    "ast_hash": "6aa39c128059bce4c3805216135d14bc",
+    "semantic_hash": "6aa39c128059bce4c3805216135d14bc"
+  },
+  "backend_fork/app/routers/users.py": {
+    "mtime": 1792356538.7397928,
+    "seen": 1793079003.0728607,
+    "ast_hash": "576b8a1499c86300989f1d97db56fb0f",
+    "semantic_hash": "576b8a1499c86300989f1d97db56fb0f"
+  },
+  "backend_fork/app/store.py": {
+    "mtime": 1792356518.53934,
+    "seen": 1793079003.0728607,
+    "ast_hash": "3e6b0e5f8b7d80d3bbf4c16646c6d239",
+    "semantic_hash": "3e6b0e5f8b7d80d3bbf4c16646c6d239"
+  },
+  "deploy/pi/firewall.sh": {
+    "mtime": 1792358802.8325858,
+    "seen": 1793079003.0728607,
+    "ast_hash": "4ad9ceb9c2dd1c7fa74bfac49d581de7",
+    "semantic_hash": "4ad9ceb9c2dd1c7fa74bfac49d581de7"
+  },
+  "deploy/pi/install.sh": {
+    "mtime": 1792363601.1083524,
+    "seen": 1793079003.0728607,
+    "ast_hash": "23e0bc198e4ed1b682893fabdb04b039",
+    "semantic_hash": "23e0bc198e4ed1b682893fabdb04b039"
+  },
+  "deploy/pi/monitor-cli.sh": {
+    "mtime": 1792358848.02338,
+    "seen": 1793079003.0728607,
+    "ast_hash": "671c5ba372c69ecc145be3e701ed3e54",
+    "semantic_hash": "671c5ba372c69ecc145be3e701ed3e54"
+  },
+  "deploy/pi/pki.sh": {
+    "mtime": 1792358773.0746303,
+    "seen": 1793079003.0728607,
+    "ast_hash": "8e36b8767787d6e7c13f7668e490e3b9",
+    "semantic_hash": "8e36b8767787d6e7c13f7668e490e3b9"
+  },
+  "deploy/pi/provision_node.sh": {
+    "mtime": 1792363132.0019948,
+    "seen": 1793079003.0728607,
+    "ast_hash": "ef8f6af63b625aac23b3795a599e2f70",
+    "semantic_hash": "ef8f6af63b625aac23b3795a599e2f70"
+  },
+  "deploy/pi/wireguard.sh": {
+    "mtime": 1792363601.1083524,
+    "seen": 1793079003.0728607,
+    "ast_hash": "abf50758fce7b7d37f3d6de13f2eebe2",
+    "semantic_hash": "abf50758fce7b7d37f3d6de13f2eebe2"
+  },
+  "desktop/build.ps1": {
+    "mtime": 1792358700.8116577,
+    "seen": 1793079003.0728607,
+    "ast_hash": "c5aebc408e9c13054160901f8225fc43",
+    "semantic_hash": "c5aebc408e9c13054160901f8225fc43"
+  },
+  "desktop/instalar_ca.ps1": {
+    "mtime": 1792508077.965288,
+    "seen": 1793079003.0728607,
+    "ast_hash": "6f1f44c604b1cd9cb940bb5b694eec50",
+    "semantic_hash": "6f1f44c604b1cd9cb940bb5b694eec50"
+  },
+  "desktop/monitor_desktop.py": {
+    "mtime": 1792361180.9842718,
+    "seen": 1793079003.0728607,
+    "ast_hash": "497cfaf30d7a9dde3aa30617cf54882f",
+    "semantic_hash": "497cfaf30d7a9dde3aa30617cf54882f"
+  },
+  "firmware/esp32_node/ca_cert.h": {
+    "mtime": 1792357460.6442611,
+    "seen": 1793079003.0728607,
+    "ast_hash": "15b379a3afd5a07f60f72d772622eea8",
+    "semantic_hash": "15b379a3afd5a07f60f72d772622eea8"
+  },
+  "firmware/esp32_node/config.h": {
+    "mtime": 1792357420.5601907,
+    "seen": 1793079003.0728607,
+    "ast_hash": "e2bbca5f2531852ffcbdb4d72e43a0db",
+    "semantic_hash": "e2bbca5f2531852ffcbdb4d72e43a0db"
+  },
+  "firmware/esp32_node/sensors.cpp": {
+    "mtime": 1792357450.4987862,
+    "seen": 1793079003.0728607,
+    "ast_hash": "50e4d58365147720758ae126e792a355",
+    "semantic_hash": "50e4d58365147720758ae126e792a355"
+  },
+  "firmware/esp32_node/sensors.h": {
+    "mtime": 1792357449.970513,
+    "seen": 1793079003.0728607,
+    "ast_hash": "91601298d0d74d4b9b3ba3f7a211b92d",
+    "semantic_hash": "91601298d0d74d4b9b3ba3f7a211b92d"
+  },
+  "firmware/esp32_node/settings.cpp": {
+    "mtime": 1792357542.9437878,
+    "seen": 1793079003.0728607,
+    "ast_hash": "588621c77694b3f11c72010082d10517",
+    "semantic_hash": "588621c77694b3f11c72010082d10517"
+  },
+  "firmware/esp32_node/settings.h": {
+    "mtime": 1792357542.9424028,
+    "seen": 1793079003.0728607,
+    "ast_hash": "47a184af83d797f4ae8bdbb25a6b2550",
+    "semantic_hash": "47a184af83d797f4ae8bdbb25a6b2550"
+  },
+  "hardware/placa2/netlist.json": {
+    "mtime": 1792614574.6990857,
+    "seen": 1793079003.0728607,
+    "ast_hash": "c1e9417bc3f785d78e4ea464c4feff3c",
+    "semantic_hash": "c1e9417bc3f785d78e4ea464c4feff3c"
+  },
+  "hardware/simulacion_energia.py": {
+    "mtime": 1792384886.5950196,
+    "seen": 1793079003.0728607,
+    "ast_hash": "2e85d6ee96a554c11e8252cd9693cd37",
+    "semantic_hash": "2e85d6ee96a554c11e8252cd9693cd37"
+  },
+  "hardware/simulacion_pcb_v2.py": {
+    "mtime": 1792601110.8278291,
+    "seen": 1793079003.0728607,
+    "ast_hash": "314c6e775fcfa6b02924e6437ddd638f",
+    "semantic_hash": "314c6e775fcfa6b02924e6437ddd638f"
+  },
+  "libraries/Adafruit_Unified_Sensor/Adafruit_Sensor.cpp": {
+    "mtime": 1786570591.381749,
+    "seen": 1793079003.0728607,
+    "ast_hash": "efaf077c8ba7d3e25d1dceec4485627f",
+    "semantic_hash": "efaf077c8ba7d3e25d1dceec4485627f"
+  },
+  "libraries/Adafruit_Unified_Sensor/Adafruit_Sensor.h": {
+    "mtime": 1786570591.403836,
+    "seen": 1793079003.0728607,
+    "ast_hash": "6f6264f1eefde2eb5c5b993f188bdd53",
+    "semantic_hash": "6f6264f1eefde2eb5c5b993f188bdd53"
+  },
+  "libraries/ArduinoHttpClient/examples/BasicAuthGet/arduino_secrets.h": {
+    "mtime": 1786570591.0974965,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d2508afa018f370ef21e9e970738e476",
+    "semantic_hash": "d2508afa018f370ef21e9e970738e476"
+  },
+  "libraries/ArduinoHttpClient/examples/CustomHeader/arduino_secrets.h": {
+    "mtime": 1786570590.9295998,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d2508afa018f370ef21e9e970738e476",
+    "semantic_hash": "d2508afa018f370ef21e9e970738e476"
+  },
+  "libraries/ArduinoHttpClient/examples/DweetGet/arduino_secrets.h": {
+    "mtime": 1786570590.989012,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d2508afa018f370ef21e9e970738e476",
+    "semantic_hash": "d2508afa018f370ef21e9e970738e476"
+  },
+  "libraries/ArduinoHttpClient/examples/DweetPost/arduino_secrets.h": {
+    "mtime": 1786570591.0530088,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d2508afa018f370ef21e9e970738e476",
+    "semantic_hash": "d2508afa018f370ef21e9e970738e476"
+  },
+  "libraries/ArduinoHttpClient/examples/HueBlink/arduino_secrets.h": {
+    "mtime": 1786570591.0109916,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d2508afa018f370ef21e9e970738e476",
+    "semantic_hash": "d2508afa018f370ef21e9e970738e476"
+  },
+  "libraries/ArduinoHttpClient/examples/PostWithHeaders/arduino_secrets.h": {
+    "mtime": 1786570591.1191518,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d2508afa018f370ef21e9e970738e476",
+    "semantic_hash": "d2508afa018f370ef21e9e970738e476"
+  },
+  "libraries/ArduinoHttpClient/examples/SimpleDelete/arduino_secrets.h": {
+    "mtime": 1786570590.9071732,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d2508afa018f370ef21e9e970738e476",
+    "semantic_hash": "d2508afa018f370ef21e9e970738e476"
+  },
+  "libraries/ArduinoHttpClient/examples/SimpleGet/arduino_secrets.h": {
+    "mtime": 1786570591.1776373,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d2508afa018f370ef21e9e970738e476",
+    "semantic_hash": "d2508afa018f370ef21e9e970738e476"
+  },
+  "libraries/ArduinoHttpClient/examples/SimpleHttpExample/arduino_secrets.h": {
+    "mtime": 1786570590.9779472,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d2508afa018f370ef21e9e970738e476",
+    "semantic_hash": "d2508afa018f370ef21e9e970738e476"
+  },
+  "libraries/ArduinoHttpClient/examples/SimplePost/arduino_secrets.h": {
+    "mtime": 1786570591.1477318,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d2508afa018f370ef21e9e970738e476",
+    "semantic_hash": "d2508afa018f370ef21e9e970738e476"
+  },
+  "libraries/ArduinoHttpClient/examples/SimplePut/arduino_secrets.h": {
+    "mtime": 1786570590.9490428,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d2508afa018f370ef21e9e970738e476",
+    "semantic_hash": "d2508afa018f370ef21e9e970738e476"
+  },
+  "libraries/ArduinoHttpClient/examples/SimpleWebSocket/arduino_secrets.h": {
+    "mtime": 1786570591.076766,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d2508afa018f370ef21e9e970738e476",
+    "semantic_hash": "d2508afa018f370ef21e9e970738e476"
+  },
+  "libraries/ArduinoHttpClient/examples/node_test_server/getPostPutDelete.js": {
+    "mtime": 1786570591.1996775,
+    "seen": 1793079003.0728607,
+    "ast_hash": "1c63d1e56b0fc195e1ff39fa614b3b55",
+    "semantic_hash": "1c63d1e56b0fc195e1ff39fa614b3b55"
+  },
+  "libraries/ArduinoHttpClient/examples/node_test_server/package.json": {
+    "mtime": 1786570591.208206,
+    "seen": 1793079003.0728607,
+    "ast_hash": "256192390167156e8593e286e1d6985e",
+    "semantic_hash": "256192390167156e8593e286e1d6985e"
+  },
+  "libraries/ArduinoHttpClient/src/ArduinoHttpClient.h": {
+    "mtime": 1786570590.8328185,
+    "seen": 1793079003.0728607,
+    "ast_hash": "a3c5bb8daa6ecc586a33a8fa35493ffe",
+    "semantic_hash": "a3c5bb8daa6ecc586a33a8fa35493ffe"
+  },
+  "libraries/ArduinoHttpClient/src/HttpClient.cpp": {
+    "mtime": 1786570590.844728,
+    "seen": 1793079003.0728607,
+    "ast_hash": "79898245f759e7b957eb965429a9797b",
+    "semantic_hash": "79898245f759e7b957eb965429a9797b"
+  },
+  "libraries/ArduinoHttpClient/src/HttpClient.h": {
+    "mtime": 1786570590.817991,
+    "seen": 1793079003.0728607,
+    "ast_hash": "7ef290e34d30eecfd04fc56346491735",
+    "semantic_hash": "7ef290e34d30eecfd04fc56346491735"
+  },
+  "libraries/ArduinoHttpClient/src/URLEncoder.cpp": {
+    "mtime": 1786570590.8537412,
+    "seen": 1793079003.0728607,
+    "ast_hash": "9a1490b6c7bbea08364810edb18b0183",
+    "semantic_hash": "9a1490b6c7bbea08364810edb18b0183"
+  },
+  "libraries/ArduinoHttpClient/src/URLEncoder.h": {
+    "mtime": 1786570590.8388157,
+    "seen": 1793079003.0728607,
+    "ast_hash": "739543aa4572630394661f61364bae05",
+    "semantic_hash": "739543aa4572630394661f61364bae05"
+  },
+  "libraries/ArduinoHttpClient/src/URLParser.h": {
+    "mtime": 1786570590.8130338,
+    "seen": 1793079003.0728607,
+    "ast_hash": "f52a6b22839116509d7912ccff57434c",
+    "semantic_hash": "f52a6b22839116509d7912ccff57434c"
+  },
+  "libraries/ArduinoHttpClient/src/WebSocketClient.cpp": {
+    "mtime": 1786570590.8497303,
+    "seen": 1793079003.0728607,
+    "ast_hash": "badda98e6facbbf525d4e5d5f4b0630d",
+    "semantic_hash": "badda98e6facbbf525d4e5d5f4b0630d"
+  },
+  "libraries/ArduinoHttpClient/src/WebSocketClient.h": {
+    "mtime": 1786570590.8275404,
+    "seen": 1793079003.0728607,
+    "ast_hash": "eff11e1b79632a8da271782228636ac3",
+    "semantic_hash": "eff11e1b79632a8da271782228636ac3"
+  },
+  "libraries/ArduinoHttpClient/src/b64.cpp": {
+    "mtime": 1786570590.8067877,
+    "seen": 1793079003.0728607,
+    "ast_hash": "761b347fe734fa58f0d5228222573751",
+    "semantic_hash": "761b347fe734fa58f0d5228222573751"
+  },
+  "libraries/ArduinoHttpClient/src/b64.h": {
+    "mtime": 1786570590.823153,
+    "seen": 1793079003.0728607,
+    "ast_hash": "425c9b61a161aafad329f745acc03db5",
+    "semantic_hash": "425c9b61a161aafad329f745acc03db5"
+  },
+  "libraries/ArduinoHttpClient/src/utility/URLParser/http_parser.c": {
+    "mtime": 1786570590.8754525,
+    "seen": 1793079003.0728607,
+    "ast_hash": "a33a87ca37a3d24ae75d0727300cd130",
+    "semantic_hash": "a33a87ca37a3d24ae75d0727300cd130"
+  },
+  "libraries/ArduinoHttpClient/src/utility/URLParser/http_parser.h": {
+    "mtime": 1786570590.884005,
+    "seen": 1793079003.0728607,
+    "ast_hash": "00b47bf81a1c498bf8a461dbd63b489f",
+    "semantic_hash": "00b47bf81a1c498bf8a461dbd63b489f"
+  },
+  "libraries/Arduino_DebugUtils/src/Arduino_DebugUtils.cpp": {
+    "mtime": 1786570591.2646804,
+    "seen": 1793079003.0728607,
+    "ast_hash": "e1ca018ce6052a85abe78850bff8521f",
+    "semantic_hash": "e1ca018ce6052a85abe78850bff8521f"
+  },
+  "libraries/Arduino_DebugUtils/src/Arduino_DebugUtils.h": {
+    "mtime": 1786570591.2571623,
+    "seen": 1793079003.0728607,
+    "ast_hash": "8461545209542ab6f903e4270d4840ff",
+    "semantic_hash": "8461545209542ab6f903e4270d4840ff"
+  },
+  "libraries/Arduino_ESP32_OTA/examples/OTA_Arduino_Server/arduino_secrets.h": {
+    "mtime": 1786570591.5793855,
+    "seen": 1793079003.0728607,
+    "ast_hash": "25774088427be2eaea1df0d9dec15fa7",
+    "semantic_hash": "25774088427be2eaea1df0d9dec15fa7"
+  },
+  "libraries/Arduino_ESP32_OTA/examples/OTA_Arduino_Server/root_ca.h": {
+    "mtime": 1786570591.5906725,
+    "seen": 1793079003.0728607,
+    "ast_hash": "8124410469ae8ff3fb4f3608eb0471c8",
+    "semantic_hash": "8124410469ae8ff3fb4f3608eb0471c8"
+  },
+  "libraries/Arduino_ESP32_OTA/examples/OTA_GitHub_Server/arduino_secrets.h": {
+    "mtime": 1786570591.5490856,
+    "seen": 1793079003.0728607,
+    "ast_hash": "25774088427be2eaea1df0d9dec15fa7",
+    "semantic_hash": "25774088427be2eaea1df0d9dec15fa7"
+  },
+  "libraries/Arduino_ESP32_OTA/examples/OTA_GitHub_Server/root_ca.h": {
+    "mtime": 1786570591.5659876,
+    "seen": 1793079003.0728607,
+    "ast_hash": "c56f846ff6ee5b0e503a619c03070271",
+    "semantic_hash": "c56f846ff6ee5b0e503a619c03070271"
+  },
+  "libraries/Arduino_ESP32_OTA/src/Arduino_ESP32_OTA.cpp": {
+    "mtime": 1786570591.4834275,
+    "seen": 1793079003.0728607,
+    "ast_hash": "1dbe8264d635bf6df6e0a15656fe7cc4",
+    "semantic_hash": "1dbe8264d635bf6df6e0a15656fe7cc4"
+  },
+  "libraries/Arduino_ESP32_OTA/src/Arduino_ESP32_OTA.h": {
+    "mtime": 1786570591.4768999,
+    "seen": 1793079003.0728607,
+    "ast_hash": "042d1fd8ba188795f9500f2ac45c2da9",
+    "semantic_hash": "042d1fd8ba188795f9500f2ac45c2da9"
+  },
+  "libraries/Arduino_ESP32_OTA/src/decompress/lzss.cpp": {
+    "mtime": 1786570591.496089,
+    "seen": 1793079003.0728607,
+    "ast_hash": "9d717c1ad9adc0014dc79d7f01058591",
+    "semantic_hash": "9d717c1ad9adc0014dc79d7f01058591"
+  },
+  "libraries/Arduino_ESP32_OTA/src/decompress/lzss.h": {
+    "mtime": 1786570591.5195203,
+    "seen": 1793079003.0728607,
+    "ast_hash": "91485b7d58265e44112295dde93914f3",
+    "semantic_hash": "91485b7d58265e44112295dde93914f3"
+  },
+  "libraries/Arduino_ESP32_OTA/src/decompress/utility.cpp": {
+    "mtime": 1786570591.5036247,
+    "seen": 1793079003.0728607,
+    "ast_hash": "2eeff9125f6e683afe97e3f425923e60",
+    "semantic_hash": "2eeff9125f6e683afe97e3f425923e60"
+  },
+  "libraries/Arduino_ESP32_OTA/src/decompress/utility.h": {
+    "mtime": 1786570591.5111308,
+    "seen": 1793079003.0728607,
+    "ast_hash": "28e0a9052c56445f32ae1d9c09164d24",
+    "semantic_hash": "28e0a9052c56445f32ae1d9c09164d24"
+  },
+  "libraries/Arduino_ESP32_OTA/src/tls/amazon_root_ca.h": {
+    "mtime": 1786570591.532558,
+    "seen": 1793079003.0728607,
+    "ast_hash": "6ade5d85d35380c32fa5ac1b80fc1d6d",
+    "semantic_hash": "6ade5d85d35380c32fa5ac1b80fc1d6d"
+  },
+  "libraries/Bonezegei_DHT11-1.0.1/src/Bonezegei_DHT11.cpp": {
+    "mtime": 1786570590.1726496,
+    "seen": 1793079003.0728607,
+    "ast_hash": "441ac62c4687586ad4a3178a8cf592dd",
+    "semantic_hash": "441ac62c4687586ad4a3178a8cf592dd"
+  },
+  "libraries/Bonezegei_DHT11-1.0.1/src/Bonezegei_DHT11.h": {
+    "mtime": 1786570590.1640728,
+    "seen": 1793079003.0728607,
+    "ast_hash": "86bd092431e787add5acadbecda624e4",
+    "semantic_hash": "86bd092431e787add5acadbecda624e4"
+  },
+  "libraries/Bonezegei_DHT11/src/Bonezegei_DHT11.cpp": {
+    "mtime": 1786570591.3441699,
+    "seen": 1793079003.0728607,
+    "ast_hash": "441ac62c4687586ad4a3178a8cf592dd",
+    "semantic_hash": "441ac62c4687586ad4a3178a8cf592dd"
+  },
+  "libraries/Bonezegei_DHT11/src/Bonezegei_DHT11.h": {
+    "mtime": 1786570591.3366528,
+    "seen": 1793079003.0728607,
+    "ast_hash": "86bd092431e787add5acadbecda624e4",
+    "semantic_hash": "86bd092431e787add5acadbecda624e4"
+  },
+  "libraries/DHT11/src/DHT11.cpp": {
+    "mtime": 1786570590.7183678,
+    "seen": 1793079003.0728607,
+    "ast_hash": "de8a4bab910765278265caa23febe84b",
+    "semantic_hash": "de8a4bab910765278265caa23febe84b"
+  },
+  "libraries/DHT11/src/DHT11.h": {
+    "mtime": 1786570590.7131865,
+    "seen": 1793079003.0728607,
+    "ast_hash": "3285877d32f68eb89b716eed48ff2096",
+    "semantic_hash": "3285877d32f68eb89b716eed48ff2096"
+  },
+  "libraries/DHT_sensor_library/DHT.cpp": {
+    "mtime": 1786570590.2380106,
+    "seen": 1793079003.0728607,
+    "ast_hash": "f0b775ff503eb6256524fb3e0cf56b04",
+    "semantic_hash": "f0b775ff503eb6256524fb3e0cf56b04"
+  },
+  "libraries/DHT_sensor_library/DHT.h": {
+    "mtime": 1786570590.2181287,
+    "seen": 1793079003.0728607,
+    "ast_hash": "a1c2e1f8f12f5ec10fc43614f559dcf5",
+    "semantic_hash": "a1c2e1f8f12f5ec10fc43614f559dcf5"
+  },
+  "libraries/DHT_sensor_library/DHT_U.cpp": {
+    "mtime": 1786570590.2420204,
+    "seen": 1793079003.0728607,
+    "ast_hash": "c06da49d8fbfe7dab230d2502ebbaf79",
+    "semantic_hash": "c06da49d8fbfe7dab230d2502ebbaf79"
+  },
+  "libraries/DHT_sensor_library/DHT_U.h": {
+    "mtime": 1786570590.2330663,
+    "seen": 1793079003.0728607,
+    "ast_hash": "30406182823bf2265b18fa8a59d18503",
+    "semantic_hash": "30406182823bf2265b18fa8a59d18503"
+  },
+  "libraries/MQUnifiedsensor-3.0.0/src/MQUnifiedsensor.cpp": {
+    "mtime": 1786570590.3094568,
+    "seen": 1793079003.0728607,
+    "ast_hash": "48b1b3991939a5b8c7357591263a4162",
+    "semantic_hash": "48b1b3991939a5b8c7357591263a4162"
+  },
+  "libraries/MQUnifiedsensor-3.0.0/src/MQUnifiedsensor.h": {
+    "mtime": 1786570590.314968,
+    "seen": 1793079003.0728607,
+    "ast_hash": "bc6800eb01f39ae555c5546bfdac436c",
+    "semantic_hash": "bc6800eb01f39ae555c5546bfdac436c"
+  },
+  "scratch_extract.py": {
+    "mtime": 1786570590.0167162,
+    "seen": 1793079003.0728607,
+    "ast_hash": "24bef7ff6483cc9177f53d5ebd523a00",
+    "semantic_hash": "24bef7ff6483cc9177f53d5ebd523a00"
+  },
+  "test_esp32_sim.py": {
+    "mtime": 1786570591.6610339,
+    "seen": 1793079003.0728607,
+    "ast_hash": "7698031dd094edf9d45d078367a11ce8",
+    "semantic_hash": "7698031dd094edf9d45d078367a11ce8"
+  },
+  "web/database.py": {
+    "mtime": 1791565425.3020048,
+    "seen": 1793079003.0728607,
+    "ast_hash": "3fe9498a27aa487b6977386a44673b3a",
+    "semantic_hash": "3fe9498a27aa487b6977386a44673b3a"
+  },
+  "web/main.py": {
+    "mtime": 1792439937.6467824,
+    "seen": 1793079003.0728607,
+    "ast_hash": "808ce08eb7313ce6157c8859832254c3",
+    "semantic_hash": "808ce08eb7313ce6157c8859832254c3"
+  },
+  "web/serial_handler.py": {
+    "mtime": 1790880067.0445502,
+    "seen": 1793079003.0728607,
+    "ast_hash": "87c8e8811bbf4999ffdf7a2405a78a3c",
+    "semantic_hash": "87c8e8811bbf4999ffdf7a2405a78a3c"
+  },
+  "web/static/js/app.js": {
+    "mtime": 1792001715.6305053,
+    "seen": 1793079003.0728607,
+    "ast_hash": "2268ba4310e2c5a97cd101e8a997f86e",
+    "semantic_hash": "2268ba4310e2c5a97cd101e8a997f86e"
+  },
+  "ARDUINO_SETUP.md": {
+    "mtime": 1791562497.5735419,
+    "seen": 1793079003.0728607,
+    "ast_hash": "9e67dd421e807d5d2f7e806f6970ecd6",
+    "semantic_hash": "9e67dd421e807d5d2f7e806f6970ecd6"
+  },
+  "COMANDOS_EJECUCION.md": {
+    "mtime": 1792001798.533224,
+    "seen": 1793079003.0728607,
+    "ast_hash": "141b997a27df00521ec1c8fb10690769",
+    "semantic_hash": "141b997a27df00521ec1c8fb10690769"
+  },
+  "GUIA_CALIBRACION_PRECISION.md": {
+    "mtime": 1790801910.1258214,
+    "seen": 1793079003.0728607,
+    "ast_hash": "8156d6e6fef1872375a88b53c6be31a8",
+    "semantic_hash": "8156d6e6fef1872375a88b53c6be31a8"
+  },
+  "README.md": {
+    "mtime": 1792508086.0371995,
+    "seen": 1793079003.0728607,
+    "ast_hash": "40cf82907fea87bafed36b5e780db846",
+    "semantic_hash": "40cf82907fea87bafed36b5e780db846"
+  },
+  "arduino/calibracion.txt": {
+    "mtime": 1790879993.1632986,
+    "seen": 1793079003.0728607,
+    "ast_hash": "afda1e6d37314354787240d460ba7f2d",
+    "semantic_hash": "afda1e6d37314354787240d460ba7f2d"
+  },
+  "arduino/mgas/calibracionco2.txt": {
+    "mtime": 1790879737.4293363,
+    "seen": 1793079003.0728607,
+    "ast_hash": "b417518c26de5040df35679ae2bf764e",
+    "semantic_hash": "b417518c26de5040df35679ae2bf764e"
+  },
+  "backend/README.md": {
+    "mtime": 1792363762.096669,
+    "seen": 1793079003.0728607,
+    "ast_hash": "6fae3b2d4d5a2288c928e631036dd1ed",
+    "semantic_hash": "6fae3b2d4d5a2288c928e631036dd1ed"
+  },
+  "backend/app/templates/_add_node.html": {
+    "mtime": 1792362521.3220499,
+    "seen": 1793079003.0728607,
+    "ast_hash": "44e1a88d08549245b175fe0dbeb9ca9d",
+    "semantic_hash": "44e1a88d08549245b175fe0dbeb9ca9d"
+  },
+  "backend/app/templates/_icons.html": {
+    "mtime": 1792362294.55249,
+    "seen": 1793079003.0728607,
+    "ast_hash": "1ac77615f528fb83429b082290cd7a92",
+    "semantic_hash": "1ac77615f528fb83429b082290cd7a92"
+  },
+  "backend/app/templates/_macros.html": {
+    "mtime": 1792362306.8016655,
+    "seen": 1793079003.0728607,
+    "ast_hash": "952be665c31f9a68c23b9685f7e2ae94",
+    "semantic_hash": "952be665c31f9a68c23b9685f7e2ae94"
+  },
+  "backend/app/templates/account.html": {
+    "mtime": 1792362848.6230516,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d04d274e322932c14cc17cfde3c11e2f",
+    "semantic_hash": "d04d274e322932c14cc17cfde3c11e2f"
+  },
+  "backend/app/templates/admin.html": {
+    "mtime": 1792362828.8658412,
+    "seen": 1793079003.0728607,
+    "ast_hash": "f793503958e6a5c0c5754c1b8f000945",
+    "semantic_hash": "f793503958e6a5c0c5754c1b8f000945"
+  },
+  "backend/app/templates/base.html": {
+    "mtime": 1792363522.2127068,
+    "seen": 1793079003.0728607,
+    "ast_hash": "fbbd932cf32af4b7843c53908039cf66",
+    "semantic_hash": "fbbd932cf32af4b7843c53908039cf66"
+  },
+  "backend/app/templates/connection.html": {
+    "mtime": 1792363554.7770195,
+    "seen": 1793079003.0728607,
+    "ast_hash": "cb5cc32c23f5111f0e4afac55dbd96d7",
+    "semantic_hash": "cb5cc32c23f5111f0e4afac55dbd96d7"
+  },
+  "backend/app/templates/dashboard.html": {
+    "mtime": 1792362495.6551757,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d8f39619a3759a576fa7ef1baa9bc652",
+    "semantic_hash": "d8f39619a3759a576fa7ef1baa9bc652"
+  },
+  "backend/app/templates/login.html": {
+    "mtime": 1792362467.6269681,
+    "seen": 1793079003.0728607,
+    "ast_hash": "0cb43ca75097dca8ac743a8a6ae25f0f",
+    "semantic_hash": "0cb43ca75097dca8ac743a8a6ae25f0f"
+  },
+  "backend/app/templates/node.html": {
+    "mtime": 1792362707.4508734,
+    "seen": 1793079003.0728607,
+    "ast_hash": "ffd53094a4bcd8d45433dbf3b1f5e403",
+    "semantic_hash": "ffd53094a4bcd8d45433dbf3b1f5e403"
+  },
+  "backend/app/templates/offline.html": {
+    "mtime": 1792363571.7371118,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d5f6a14ad480f6935e796ad038c09092",
+    "semantic_hash": "d5f6a14ad480f6935e796ad038c09092"
+  },
+  "backend/requirements-dev.txt": {
+    "mtime": 1792358262.7277453,
+    "seen": 1793079003.0728607,
+    "ast_hash": "535748e4c0a61983e3a3d9921aa1ac47",
+    "semantic_hash": "535748e4c0a61983e3a3d9921aa1ac47"
+  },
+  "backend/requirements.txt": {
+    "mtime": 1792358262.1872375,
+    "seen": 1793079003.0728607,
+    "ast_hash": "5651549b5189d6db53486193bfe060a0",
+    "semantic_hash": "5651549b5189d6db53486193bfe060a0"
+  },
+  "backend_fork/NOTA.md": {
+    "mtime": 1792357856.9832137,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d84aea5bf3ad77807ddcecd7bab01e66",
+    "semantic_hash": "d84aea5bf3ad77807ddcecd7bab01e66"
+  },
+  "backend_fork/README.md": {
+    "mtime": 1792356567.1642802,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d1ec1997ec0b76851a699e772461d8fd",
+    "semantic_hash": "d1ec1997ec0b76851a699e772461d8fd"
+  },
+  "backend_fork/requirements.txt": {
+    "mtime": 1792356439.3757381,
+    "seen": 1793079003.0728607,
+    "ast_hash": "ff7a367de8c4eb52de82f35a29044985",
+    "semantic_hash": "ff7a367de8c4eb52de82f35a29044985"
+  },
+  "desktop/README.md": {
+    "mtime": 1792508076.6961408,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d3edae0b806765622a2da48cca016d91",
+    "semantic_hash": "d3edae0b806765622a2da48cca016d91"
+  },
+  "desktop/requirements.txt": {
+    "mtime": 1792358690.9416323,
+    "seen": 1793079003.0728607,
+    "ast_hash": "37e95f06e3cb698548a6333fe3393653",
+    "semantic_hash": "37e95f06e3cb698548a6333fe3393653"
+  },
+  "desktop/setup.html": {
+    "mtime": 1792358690.522079,
+    "seen": 1793079003.0728607,
+    "ast_hash": "38507d6870094cfad903887e12c5afc8",
+    "semantic_hash": "38507d6870094cfad903887e12c5afc8"
+  },
+  "docs/ARQUITECTURA.md": {
+    "mtime": 1792363149.4838288,
+    "seen": 1793079003.0728607,
+    "ast_hash": "746e65860dd07054a43cdbdb0355039a",
+    "semantic_hash": "746e65860dd07054a43cdbdb0355039a"
+  },
+  "docs/CONECTIVIDAD.md": {
+    "mtime": 1792363624.8220463,
+    "seen": 1793079003.0728607,
+    "ast_hash": "6e621bee35e7c1a7cf26810a6cf0dc1d",
+    "semantic_hash": "6e621bee35e7c1a7cf26810a6cf0dc1d"
+  },
+  "docs/DESPLIEGUE_PI - copia.md": {
+    "mtime": 1792363149.4819834,
+    "seen": 1793079003.0728607,
+    "ast_hash": "146a5bbb47faf83741744011b89a731d",
+    "semantic_hash": "146a5bbb47faf83741744011b89a731d"
+  },
+  "docs/DESPLIEGUE_PI.md": {
+    "mtime": 1792363149.4819834,
+    "seen": 1793079003.0728607,
+    "ast_hash": "146a5bbb47faf83741744011b89a731d",
+    "semantic_hash": "146a5bbb47faf83741744011b89a731d"
+  },
+  "docs/GUIA_PASO_A_PASO.md": {
+    "mtime": 1793024971.5355825,
+    "seen": 1793079003.0728607,
+    "ast_hash": "8d405b119bcbe7b7f068f090acca5fec",
+    "semantic_hash": "8d405b119bcbe7b7f068f090acca5fec"
+  },
+  "docs/INTEGRACION_ML.md": {
+    "mtime": 1792363213.063233,
+    "seen": 1793079003.0728607,
+    "ast_hash": "0b4d65c1e8964fa5e3b484cecb09fe57",
+    "semantic_hash": "0b4d65c1e8964fa5e3b484cecb09fe57"
+  },
+  "firmware/README.md": {
+    "mtime": 1792363149.4848256,
+    "seen": 1793079003.0728607,
+    "ast_hash": "81974ab81088b66b4ee5d4b796a13b41",
+    "semantic_hash": "81974ab81088b66b4ee5d4b796a13b41"
+  },
+  "hardware/PCB_V2_COMERCIAL.md": {
+    "mtime": 1792614782.4558887,
+    "seen": 1793079003.0728607,
+    "ast_hash": "bab1b42360d12be9d35f2789bb80c5d2",
+    "semantic_hash": "bab1b42360d12be9d35f2789bb80c5d2"
+  },
+  "hardware/PLACA2_INTERFAZ.md": {
+    "mtime": 1792614781.309314,
+    "seen": 1793079003.0728607,
+    "ast_hash": "99ba185b547858f1ebb0738593c7847e",
+    "semantic_hash": "99ba185b547858f1ebb0738593c7847e"
+  },
+  "implementation_plan.md": {
+    "mtime": 1792355710.2272222,
+    "seen": 1793079003.0728607,
+    "ast_hash": "6ffdffbd41dc51f7d0f5b0485bba7b3d",
+    "semantic_hash": "6ffdffbd41dc51f7d0f5b0485bba7b3d"
+  },
+  "libraries/Adafruit_Unified_Sensor/README.md": {
+    "mtime": 1786570591.3887577,
+    "seen": 1793079003.0728607,
+    "ast_hash": "9a132989d695da559b1167a6e370f913",
+    "semantic_hash": "9a132989d695da559b1167a6e370f913"
+  },
+  "libraries/ArduinoHttpClient/CHANGELOG.md": {
+    "mtime": 1786570590.797838,
+    "seen": 1793079003.0728607,
+    "ast_hash": "594fe3380d469c64a34e30a9dc763071",
+    "semantic_hash": "594fe3380d469c64a34e30a9dc763071"
+  },
+  "libraries/ArduinoHttpClient/README.md": {
+    "mtime": 1786570590.7936223,
+    "seen": 1793079003.0728607,
+    "ast_hash": "db4092152d982e3ea303ae33c46f4ac6",
+    "semantic_hash": "db4092152d982e3ea303ae33c46f4ac6"
+  },
+  "libraries/ArduinoHttpClient/keywords.txt": {
+    "mtime": 1786570590.788101,
+    "seen": 1793079003.0728607,
+    "ast_hash": "44408e081b284c789612ac1634943ecc",
+    "semantic_hash": "44408e081b284c789612ac1634943ecc"
+  },
+  "libraries/ArduinoHttpClient/src/utility/URLParser/README.md": {
+    "mtime": 1786570590.865941,
+    "seen": 1793079003.0728607,
+    "ast_hash": "ed892cf2405844743a9ee7e269b6d87c",
+    "semantic_hash": "ed892cf2405844743a9ee7e269b6d87c"
+  },
+  "libraries/Arduino_DebugUtils/README.md": {
+    "mtime": 1786570591.2379155,
+    "seen": 1793079003.0728607,
+    "ast_hash": "9c4f5e504f68a6e7b39b8eefa74b3d9c",
+    "semantic_hash": "9c4f5e504f68a6e7b39b8eefa74b3d9c"
+  },
+  "libraries/Arduino_DebugUtils/keywords.txt": {
+    "mtime": 1786570591.2309,
+    "seen": 1793079003.0728607,
+    "ast_hash": "acbdef9cce9dbfba025d4daff5ca07f0",
+    "semantic_hash": "acbdef9cce9dbfba025d4daff5ca07f0"
+  },
+  "libraries/Arduino_ESP32_OTA/README.md": {
+    "mtime": 1786570591.4572644,
+    "seen": 1793079003.0728607,
+    "ast_hash": "3a14c7e1e381fd921e33d8a8d570a5d9",
+    "semantic_hash": "3a14c7e1e381fd921e33d8a8d570a5d9"
+  },
+  "libraries/Arduino_ESP32_OTA/keywords.txt": {
+    "mtime": 1786570591.4496238,
+    "seen": 1793079003.0728607,
+    "ast_hash": "9e2c0138cd98a32a74b3b19ecedcaa03",
+    "semantic_hash": "9e2c0138cd98a32a74b3b19ecedcaa03"
+  },
+  "libraries/Bonezegei_DHT11-1.0.1/README.md": {
+    "mtime": 1786570590.1509373,
+    "seen": 1793079003.0728607,
+    "ast_hash": "0aaf2a1221274dfd7d7ba5ff88796c39",
+    "semantic_hash": "0aaf2a1221274dfd7d7ba5ff88796c39"
+  },
+  "libraries/Bonezegei_DHT11/README.md": {
+    "mtime": 1786570591.3178203,
+    "seen": 1793079003.0728607,
+    "ast_hash": "0aaf2a1221274dfd7d7ba5ff88796c39",
+    "semantic_hash": "0aaf2a1221274dfd7d7ba5ff88796c39"
+  },
+  "libraries/DHT11/CONTRIBUTING.md": {
+    "mtime": 1786570590.7052176,
+    "seen": 1793079003.0728607,
+    "ast_hash": "7292dc8229abb16f1a1d5dabddf29b72",
+    "semantic_hash": "7292dc8229abb16f1a1d5dabddf29b72"
+  },
+  "libraries/DHT11/README.md": {
+    "mtime": 1786570590.6896935,
+    "seen": 1793079003.0728607,
+    "ast_hash": "d046f4843a344e01d5b55b3aadef82db",
+    "semantic_hash": "d046f4843a344e01d5b55b3aadef82db"
+  },
+  "libraries/DHT11/SECURITY.md": {
+    "mtime": 1786570590.6792233,
+    "seen": 1793079003.0728607,
+    "ast_hash": "a01ada5811f0d83251a5cb0cd273d272",
+    "semantic_hash": "a01ada5811f0d83251a5cb0cd273d272"
+  },
+  "libraries/DHT_sensor_library/CONTRIBUTING.md": {
+    "mtime": 1786570590.2472236,
+    "seen": 1793079003.0728607,
+    "ast_hash": "7871896ce8331fc6c1b30c4b74a306dd",
+    "semantic_hash": "7871896ce8331fc6c1b30c4b74a306dd"
+  },
+  "libraries/DHT_sensor_library/README.md": {
+    "mtime": 1786570590.2228982,
+    "seen": 1793079003.0728607,
+    "ast_hash": "eb67d5414e7eef88600a9b39a5aef216",
+    "semantic_hash": "eb67d5414e7eef88600a9b39a5aef216"
+  },
+  "libraries/DHT_sensor_library/keywords.txt": {
+    "mtime": 1786570590.2108057,
+    "seen": 1793079003.0728607,
+    "ast_hash": "90e921f39c5782d560123816372b2c23",
+    "semantic_hash": "90e921f39c5782d560123816372b2c23"
+  },
+  "libraries/MQUnifiedsensor-3.0.0/README.md": {
+    "mtime": 1786570590.2855542,
+    "seen": 1793079003.0728607,
+    "ast_hash": "e3054bac0853cea6fe599966b7ab6600",
+    "semantic_hash": "e3054bac0853cea6fe599966b7ab6600"
+  },
+  "web/requirements.txt": {
+    "mtime": 1790883546.32346,
+    "seen": 1793079003.0728607,
+    "ast_hash": "c04ebe8c0f5d6e1b381ad397d29cfac5",
+    "semantic_hash": "c04ebe8c0f5d6e1b381ad397d29cfac5"
+  },
+  "web/templates/index.html": {
+    "mtime": 1791561203.399881,
+    "seen": 1793079003.0728607,
+    "ast_hash": "ad3f2e64ca32ab99b64a53685aa11b61",
+    "semantic_hash": "ad3f2e64ca32ab99b64a53685aa11b61"
+  },
+  "hardware/placa2/placa2_pcb.png": {
+    "mtime": 1792614783.7110474,
+    "seen": 1793079003.0728607,
+    "ast_hash": "daae921e9885dc1ec599a71d29cbce0a",
+    "semantic_hash": "daae921e9885dc1ec599a71d29cbce0a"
+  },
+  "libraries/MQUnifiedsensor-3.0.0/examples/ESP32/ESP32_WROOM_32D/images/esp-32-wroom-32d-board.jpg": {
+    "mtime": 1786570590.5128305,
+    "seen": 1793079003.0728607,
+    "ast_hash": "bd3204f88287d97e2158e6c6dbd9dce7",
+    "semantic_hash": "bd3204f88287d97e2158e6c6dbd9dce7"
+  },
+  "libraries/MQUnifiedsensor-3.0.0/examples/ESP32/ESP32_WROOM_32D/images/esp32-wroom-32d-pinout.jpg": {
+    "mtime": 1786570590.523007,
+    "seen": 1793079003.0728607,
+    "ast_hash": "1ca917952c19999ce340d58b371b7051",
+    "semantic_hash": "1ca917952c19999ce340d58b371b7051"
+  }
+}

@@ -81,6 +81,10 @@ async def security_headers(request: Request, call_next):
     response.headers.setdefault("X-Frame-Options", "DENY")
     if request.url.path.startswith("/api/"):
         response.headers.setdefault("Cache-Control", "no-store")
+    elif request.url.path.startswith("/static/"):
+        # Revalida siempre (304 si no cambió): tras actualizar el servidor, cada
+        # dispositivo recibe el JavaScript nuevo sin borrar la caché a mano.
+        response.headers.setdefault("Cache-Control", "no-cache")
     return response
 
 

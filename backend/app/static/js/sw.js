@@ -6,10 +6,11 @@
    - API, WebSocket y /healthz: nunca se interceptan ni se guardan. */
 "use strict";
 
-const CACHE = "monitor-v1";
+const CACHE = "monitor-v3";
 const PRECACHE = [
     "/offline",
     "/static/css/app.css",
+    "/static/js/theme.js",
     "/static/js/common.js",
     "/static/js/netlink.js",
     "/static/js/offline.js",

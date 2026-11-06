@@ -6,6 +6,9 @@ Preferences prefs;
 const char* NS_NET = "net";
 const char* NS_CFG = "cfg";
 const char* NS_CAL = "cal";
+// "r0" guardaba valores calculados sin descontar el divisor del MQ-4: ya no se leen.
+const char* KEY_R0 = "r0_div";
+const char* KEY_R0_OLD = "r0";
 }
 
 namespace settings {
@@ -35,7 +38,7 @@ void saveNet(const NetSettings& net) {
 void loadConfig(NodeConfig& cfg) {
   prefs.begin(NS_CFG, true);
   cfg.rev = prefs.getULong("rev", 0);
-  cfg.intervalMs = prefs.getULong("int", 5000);
+  cfg.intervalMs = prefs.getULong("int", 2000);
   cfg.dhtTempOff = prefs.getFloat("dt", 0.0f);
   cfg.dhtHumOff = prefs.getFloat("dh", 0.0f);
   cfg.usOffsetCm = prefs.getFloat("uo", 0.0f);
@@ -64,20 +67,22 @@ void saveConfig(const NodeConfig& cfg) {
 
 float loadR0() {
   prefs.begin(NS_CAL, true);
-  float r0 = prefs.getFloat("r0", NAN);
+  float r0 = prefs.getFloat(KEY_R0, NAN);
   prefs.end();
   return r0;
 }
 
 void saveR0(float r0) {
   prefs.begin(NS_CAL, false);
-  prefs.putFloat("r0", r0);
+  prefs.putFloat(KEY_R0, r0);
+  prefs.remove(KEY_R0_OLD);
   prefs.end();
 }
 
 void clearR0() {
   prefs.begin(NS_CAL, false);
-  prefs.remove("r0");
+  prefs.remove(KEY_R0);
+  prefs.remove(KEY_R0_OLD);
   prefs.end();
 }
 

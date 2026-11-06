@@ -1,0 +1,38 @@
+﻿placa,referencias,cantidad,descripcion,valor,fabricante,numero_de_parte,encapsulado,hoja_de_datos_verificada,notas
+Placa 1,U2,1,Tarjeta de desarrollo ESP32,ESP32-DevKitC-32E,Espressif,ESP32-DevKitC-32E,Módulo 2×19 pines,no,Va en zócalo de tira hembra 2.54 mm
+Placa 1,U2 (zócalo),2,"Tira hembra 1×20, 2.54 mm (zócalo de la DevKitC, cortada a 19)",1×20,Würth Elektronik,61302011821,,no,"2 piezas; no hay 1×19 en Mouser, se corta la posición 20"
+Placa 1,U$1,1,"Módulo reductor 12→5 V 3 A, salida fija de 5 V",MP1584 5 V fijo,Genérico,MP1584 (5 V fijo),Módulo 4 pines,no,Se compran 2: uno para el nodo y uno de repuesto. Alimenta directo al MQ-4 y al MH-Z19C: medir 5.0 ± 0.1 V antes de montar
+Placa 1,D1,1,"Schottky 3 A 40 V, axial",1N5822,Genérico,1N5822,DO-201AD (axial),no,Entre VOUT+ de U$1 y 5V_ESP. Sale del paquete de 20
+Placa 1,F1,1,Fusible cerámico 3 A,3 A 5×20 mm,Genérico,Cerámico 3 A 5×20 mm,5 × 20 mm,no,Bus de 12 V. Paquete de 5
+Placa 1,F1,1,"Portafusible de PCB 5×20 mm, 5 A 250 V",4527,Keystone Electronics,4527,"4527, 21.9 mm entre pines",no,Comprobar con la pieza real que coincidan los 21.9 mm de la huella
+Placa 1,J1,1,"Bornera de tornillo 2 polos, paso 5 mm",2 pines 5 mm,Genérico,Bornera PCB 2 pines 5 mm,TERM_5.08_2P,no,Entrada de 12 V desde UPS1. La huella es de 5.08 mm: comprobar que entren los pines de 5.00 mm. Paquete de 10
+Placa 1,R1,1,Resistencia de perforación 1/4 W 1 %,100 kΩ,Genérico,Resistencia 1/4 W 1 % 100 kΩ,"Axial 0207, paso 10.16 mm",no,Sustituye a la 0805
+Placa 1,R2,1,Resistencia de perforación 1/4 W 1 %,150 kΩ,Genérico,Resistencia 1/4 W 1 % 150 kΩ,"Axial 0207, paso 10.16 mm",no,Sustituye a la 0805
+Placa 1,R3,1,Resistencia de perforación 1/4 W 1 %,1.8 kΩ,Genérico,Resistencia 1/4 W 1 % 1.8 kΩ,"Axial 0207, paso 10.16 mm",no,Sustituye a la 0805
+Placa 1,R4,1,Resistencia de perforación 1/4 W 1 %,3.3 kΩ,Genérico,Resistencia 1/4 W 1 % 3.3 kΩ,"Axial 0207, paso 10.16 mm",no,Sustituye a la 0805
+Placa 1,R5,1,Resistencia de perforación 1/4 W 1 %,4.7 kΩ,Genérico,Resistencia 1/4 W 1 % 4.7 kΩ,"Axial 0207, paso 10.16 mm",no,Sustituye a la 0805
+Placa 1,R6,1,Resistencia de perforación 1/4 W 1 %,100 kΩ,Genérico,Resistencia 1/4 W 1 % 100 kΩ,"Axial 0207, paso 10.16 mm",no,Sustituye a la 0805
+Placa 1,R7,1,Resistencia de perforación 1/4 W 1 %,22 kΩ,Genérico,Resistencia 1/4 W 1 % 22 kΩ,"Axial 0207, paso 10.16 mm",no,Sustituye a la 0805
+Placa 1,"RL1, RL2, RL3, RL4",4,Resistencia de perforación 1/4 W 1 %,330 Ω,Genérico,Resistencia 1/4 W 1 % 330 Ω,"Axial 0207, paso 10.16 mm",no,Sustituye a la 0805
+Placa 1,C3,1,Capacitor cerámico de perforación 50 V,100 nF,Genérico,Cerámico 100 nF 50 V (104),"Radial, paso 5.08 mm",no,Sustituye al 0805. Comprobar que tus capacitores tengan 5 mm entre pines
+Placa 1,"MQ1, CO2, SR1",3,"Tira de pines macho 1×4, 2.54 mm",1×4,Würth Elektronik,61300411121,HDR_1X4,no,Conexión directa de los sensores
+Placa 1,DHT1,1,"Tira de pines macho 1×3, 2.54 mm",1×3,Würth Elektronik,61300311121,HDR_1X3,no,"Conexión directa del DHT11, alimentado a 3.3 V"
+Placa 1,"LED1, LED2, LED3, LED4",4,LED radial 5 mm rojo,Rojo,Genérico,LED rojo radial 5 mm,"Radial, paso 2.54 mm",no,"Alarmas CH4, CO2, nivel y T/H. Pieza LED_RADIAL de la biblioteca Tinkercad"
+Sensores,MQ-4,1,Módulo sensor de metano MQ-4 (salida analógica),MQ-4,Hanwei / Winsen,MQ-4 (módulo),,sí,Necesita O2 ≥ 2 % y < 95 % HR: no sirve dentro del gas del digestor
+Sensores,MH-Z19C,1,"Sensor NDIR de CO2, UART",400-5000 ppm,Winsen,MH-Z19C,,sí,5.0 ± 0.1 V; rango insuficiente para biogás (30-45 % CO2)
+Sensores,AJ-SR04M,1,Sensor ultrasónico de nivel a prueba de agua,AJ-SR04M,,AJ-SR04M,,no,Transductor con cable de 2.5 m
+Sensores,DHT11,1,Sensor de temperatura y humedad,DHT11,Aosong,DHT11,,sí,A 3.3 V el cable debe ser lo más corto posible; con condensación se daña
+Cableado,W2-W5,1,Arneses con conector hembra 2.54 mm,2.54 mm,,,,no,"AGREGADO, no está en la lista de compra: reemplaza a los JST XH de la placa 2. Sensores ↔ MQ1, CO2, SR1 y DHT1"
+Cableado,W6,1,Cable de batería 1.5 mm² (rojo/negro),1.5 mm²,,,,no,BAT1 ↔ FB1 ↔ entrada de batería de UPS1. Las zapatas vienen en el paquete; revisar que sirvan para los bornes
+Cableado,W7,1,Cable 2 × 0.75 mm² del adaptador,2 × 0.75 mm²,,,,no,PS1 ↔ entrada de adaptador de UPS1
+Cableado,W8,1,Cable 2 × 0.75 mm² de salida del módulo,2 × 0.75 mm²,,,,no,Salida de UPS1 ↔ J1
+Cableado,W9,1,Cable 24 AWG con 2 conectores faston hembra para S1,24 AWG,,,,no,"AGREGADO, no está en la lista de compra: 2 tramos de ≈ 8 cm, del interruptor a los pads S1 de la placa (taladro de 0.8 mm). Comprobar el ancho de los terminales: el modelo indica ≈ 7 mm"
+Mecánica,G1,1,"Caja de la placa, base y tapa (diseño en Fusion)","≈ 86 × 82 × 51.5 mm, 100 × 96 mm con orejas",,,,no,Paredes y piso de 2.5 mm. No aloja UPS1 ni la batería. Con estas aberturas no es hermética: el IP65 ya no aplica
+Mecánica,G4,1,Prensaestopa IP68 M12 × 1.5 para cable Ø 3-6.5 mm,M12,,,,no,5 piezas si usas prensaestopas: J1 y los 4 sensores. Los barrenos miden 12.5 mm; la separación de los sensores es de 17 mm: comprobar el tamaño de la tuerca
+Mecánica,G7,1,Tornillos M3 para plástico,M3,,,,no,"8 piezas: 4 de la placa a los postes, largo ≈ 6 mm; 4 de la tapa a las orejas, largo ≈ 10 mm. Barrenos guía de 2.6 mm"
+Placa 1,S1,1,Interruptor rocker de PCB,471001264142,Würth Elektronik,471001264142,"471001264142(0,75-1,25)",no,"Se monta a presión en la tapa (recorte de 19.4 × 12.9 mm, panel de 1 mm) y se une con W9 a los pads S1 de la placa. Sus terminales no van soldados a la PCB"
+Mecánica,CH1,1,Cargador del paquete cargador + zapatas + batería,12 V,Genérico,Paquete cargador + batería,,no,"Fijo en los bornes de BAT1, con su propia conexión; UPS1 no carga la batería. Reemplaza al NASTIMA. Confirmar voltaje y corriente"
+Mecánica,BAT1,1,Batería 12 V 7 Ah (incluida en el paquete de CH1),12 V 7 Ah,Genérico,Paquete cargador + batería,,no,Respaldo: va a la entrada de batería de UPS1. No se compra aparte
+Mecánica,UPS1,1,"Módulo de conmutación automática con protección, 12 V 10 A",12 V 10 A,Genérico,,Módulo,no,Prioriza PS1 y cambia a batería. No carga la batería. Medir el tiempo de conmutación
+Mecánica,PS1,1,"Adaptador de CA a CC, fuente principal",12 V ≥ 1 A,,,,no,"AGREGADO, no está en la lista de compra. Sirven de 12 a 13.8 V"
+Mecánica,FB1,1,Portafusible en línea 5×20 mm con fusible cerámico de 3 A,3 A,,,,no,"AGREGADO, no está en la lista de compra: junto al borne + de BAT1, porque F1 no protege el cable de la batería. El fusible sale del paquete de 5"

@@ -3,7 +3,7 @@
 // =====================================================
 // IDENTIDAD DEL FIRMWARE
 // =====================================================
-#define FW_VERSION "3.0.0"
+#define FW_VERSION "3.1.0"
 
 // Raíz de tópicos. Debe coincidir con backend/app/topics.py y con la ACL
 // de Mosquitto (deploy/mosquitto/acl).
@@ -19,11 +19,32 @@
 #define PIN_US_ECHO 18     // AJ-SR04M ECHO
 #define PIN_DHT 23         // DHT11 datos
 #define PIN_LED 2          // LED integrado
+#define PIN_VBUS 35        // Bus de 12 V por el divisor R6/R7 (ADC1, válido con WiFi)
+#define PIN_ALR_CH4 25     // LED1, alarma de metano
+#define PIN_ALR_CO2 26     // LED2, alarma de CO2
+#define PIN_ALR_NIVEL 27   // LED3, alarma de nivel
+#define PIN_ALR_TH 14      // LED4, alarma de temperatura
+
+// =====================================================
+// MEDICIÓN DEL BUS DE 12 V
+// =====================================================
+#define VBUS_DIVIDER ((100.0f + 22.0f) / 22.0f)   // R6 100 kΩ / R7 22 kΩ
+#define VBUS_SAMPLES 8
+
+// =====================================================
+// ALARMAS LOCALES (mismos valores que DEFAULT_THRESHOLDS en backend/app/state.py)
+// Son fijas: los umbrales por nodo del panel no llegan al firmware.
+// =====================================================
+#define ALR_CH4_PPM_MAX 5000.0f
+#define ALR_CO2_PPM_MAX 5000
+#define ALR_LEVEL_PCT_MAX 90.0f
+#define ALR_TEMP_C_MAX 38.0f
 
 // =====================================================
 // MQ-4
 // =====================================================
 #define MQ4_V_SENSOR 5.0f
+#define MQ4_ADC_RATIO (150.0f / (100.0f + 150.0f))   // Divisor R1 100 kΩ / R2 150 kΩ entre A0 e IO34
 #define MQ4_RL_KOHM 10.0f
 #define MQ4_CH4_M -0.354f
 #define MQ4_CH4_B 1.062f
