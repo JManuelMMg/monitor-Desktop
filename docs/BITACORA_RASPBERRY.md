@@ -408,6 +408,38 @@ datos conectada.
 - El nodo sigue conectado al broker.
 - Pasan las 34 pruebas del backend.
 
+## Logo e íconos nuevos (2026-11-06)
+
+Origen: `Assets/img/WrR1h.gif`, una ilustración IoT animada (nube, WiFi, nodos, gráfica y tanque) de 800×800 px,
+20 cuadros de 70 ms y 1.5 MB. Los recursos se generaron con Pillow:
+
+| Archivo | Contenido | Tamaño |
+|---|---|---|
+| `static/img/logo.webp` | Ilustración completa animada, sin márgenes, 132 px (se muestra a 44 px) | 58 KB |
+| `static/img/logo-lg.webp` | Igual, 320 px, para el inicio de sesión | 192 KB |
+| `static/img/logo.png` | Primer cuadro, fijo, para «reducir movimiento» | 15 KB |
+| `static/favicon.png` | Recorte de la nube, 64 px, esquinas redondeadas (sustituye a `favicon.svg`) | 6 KB |
+| `static/icons/icon-192.png`, `icon-512.png`, `apple-touch-icon.png` | Recorte de la nube | 25–122 KB |
+| `static/icons/maskable-512.png` | Nube al 80 % sobre negro (zona segura de Android) | 88 KB |
+| `desktop/icon.ico` | Nube, 16–256 px; `build.ps1` la usa con `--icon` | 84 KB |
+
+- El recorte de la nube se usa en los íconos chicos porque la ilustración completa no se distingue a 16–64 px.
+- Nuevo macro `logo()` en `_macros.html`: un `<picture>` que da el cuadro fijo cuando el sistema pide reducir
+  movimiento.
+- Se usa en la barra lateral, en la marca del inicio de sesión y, en grande, sobre el título del inicio de sesión
+  (`.auth-hero`, cuyo tamaño se adapta a la altura y que se oculta en pantallas angostas).
+- La página Conexión usa el logo animado.
+- El service worker pasó a `monitor-v4` y guarda en caché el favicon y el logo.
+
+**Desplegado** con `actualizar_backend.sh` y comprobado en la dirección pública:
+- `/healthz` responde con MQTT y base de datos conectados.
+- `logo.webp`, `logo-lg.webp`, `favicon.png`, `icon-192.png` y el manifiesto responden 200 con el tipo correcto.
+- `/login` referencia el logo nuevo.
+
+> **Aviso:** en la terminal de la PC donde se ejecutó la actualización quedó visible texto escrito tras el aviso de
+> `sudo`. Si era la contraseña de `ialab`, conviene cambiarla con `passwd` en la Raspberry. SSH ya solo acepta la
+> llave, pero la contraseña sigue sirviendo para `sudo` y para la consola local.
+
 ## Archivos en la Raspberry
 
 | Archivo | Uso |

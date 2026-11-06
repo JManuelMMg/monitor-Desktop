@@ -14,6 +14,6 @@ $data = @("--add-data", "setup.html;.")
 if (Test-Path "ca.crt") { $data += @("--add-data", "ca.crt;.") }
 
 .\.venv\Scripts\pyinstaller.exe --noconfirm --clean --onefile --windowed `
-    --name MonitorMultiNodo @data monitor_desktop.py
+    --name MonitorMultiNodo --icon icon.ico @data monitor_desktop.py
 
 Write-Host "Listo: $PSScriptRoot\dist\MonitorMultiNodo.exe"

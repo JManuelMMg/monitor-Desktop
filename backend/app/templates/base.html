@@ -1,4 +1,4 @@
-{% from "_macros.html" import icon %}<!doctype html>
+{% from "_macros.html" import icon, logo %}<!doctype html>
 <html lang="es">
 <head>
     <meta charset="utf-8">
@@ -8,7 +8,7 @@
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" href="/static/icons/apple-touch-icon.png">
     <title>{% block title %}Monitor{% endblock %} · Monitor multi-nodo</title>
-    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/static/favicon.png" type="image/png">
     <script src="/static/js/theme.js"></script>
     <link rel="stylesheet" href="/static/css/app.css">
 </head>
@@ -18,7 +18,7 @@
 <div class="shell">
     <aside class="sidebar" id="sidebar">
         <a class="brand" href="/">
-            <span class="brand-mark">{{ icon('zap') }}</span>
+            {{ logo() }}
             <span class="brand-text">MONITOR<small>multi-nodo</small></span>
         </a>
         <nav class="side-nav">
