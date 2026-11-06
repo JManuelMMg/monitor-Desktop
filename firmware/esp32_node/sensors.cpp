@@ -31,7 +31,7 @@ float calSum = 0;
 unsigned long calLastMs = 0;
 
 float mqRs() {
-  float v = analogReadMilliVolts(PIN_MQ4) / 1000.0f;
+  float v = analogReadMilliVolts(PIN_MQ4) / 1000.0f / MQ4_ADC_RATIO;  // voltaje real en A0
   if (v <= 0.05f || v >= (MQ4_V_SENSOR - 0.05f)) return NAN;
   return MQ4_RL_KOHM * ((MQ4_V_SENSOR / v) - 1.0f);
 }
@@ -90,6 +90,12 @@ float measureDistanceCm() {
   return cm;
 }
 
+float readVbus() {
+  uint32_t mv = 0;
+  for (int i = 0; i < VBUS_SAMPLES; i++) mv += analogReadMilliVolts(PIN_VBUS);
+  return mv / (float)VBUS_SAMPLES / 1000.0f * VBUS_DIVIDER;
+}
+
 float filterDistance(float cm) {
   usSamples[usIndex] = cm;
   usIndex = (usIndex + 1) % US_FILTER;
@@ -110,6 +116,7 @@ void begin() {
   pinMode(PIN_US_ECHO, INPUT);
   digitalWrite(PIN_US_TRIG, LOW);
   analogSetPinAttenuation(PIN_MQ4, ADC_11db);
+  analogSetPinAttenuation(PIN_VBUS, ADC_11db);
   dht.begin();
   r0Kohm = settings::loadR0();
 }
@@ -151,6 +158,8 @@ void read(const NodeConfig& cfg, Reading& out) {
     out.tempC = t + cfg.dhtTempOff;
     out.humPct = constrain(h + cfg.dhtHumOff, 0.0f, 100.0f);
   }
+
+  out.vbusV = readVbus();
 }
 
 float mqR0() { return r0Kohm; }

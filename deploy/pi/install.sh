@@ -54,7 +54,7 @@ echo "==> Certificados TLS"
 
 echo "==> Mosquitto"
 install -m 644 "$APP_DIR/deploy/mosquitto/monitor.conf" /etc/mosquitto/conf.d/monitor.conf
-install -m 640 -o root -g mosquitto "$APP_DIR/deploy/mosquitto/acl" /etc/mosquitto/acl
+install -m 640 -o mosquitto -g mosquitto "$APP_DIR/deploy/mosquitto/acl" /etc/mosquitto/acl
 
 if [[ ! -f $ENV_FILE ]]; then
     mqtt_pass=$(openssl rand -hex 24)

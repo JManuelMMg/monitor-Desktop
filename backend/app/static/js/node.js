@@ -6,7 +6,10 @@
     const canOperate = root.dataset.canOperate === "1";
     const isAdmin = root.dataset.isAdmin === "1";
     const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-    const COLORS = { temp: css("--c-temp"), hum: css("--c-hum"), ch4: css("--c-ch4"), co2: css("--c-co2"), level: css("--c-level") };
+    const COLORS = {};
+    const readColors = () => Object.assign(COLORS, { temp: css("--c-temp"), hum: css("--c-hum"), ch4: css("--c-ch4"), co2: css("--c-co2"), level: css("--c-level") });
+    readColors();
+    document.addEventListener("themechange", () => { readColors(); if (chartsDrawn) drawCharts(false); });
     const CMD_LABEL = {
         ping: "Ping", reboot: "Reinicio", identify: "Identificar", calibrate_mq4: "Calibrar MQ-4",
         clear_mq4: "Borrar R0", calibrate_co2_zero: "Cero CO₂",
@@ -131,6 +134,44 @@
         LineChart.draw(document.getElementById("chart-level"), [{ label: "Nivel", color: COLORS.level, points: series("level_pct") }], opts(1));
         chartsDrawn = true;
     }
+
+    // ---------- lecturas en vivo dentro de la gráfica ----------
+    // El histórico llega con ~400 puntos para todo el rango. Cada lectura en vivo
+    // mueve el último punto; cuando pasa un intervalo de esa resolución se agrega
+    // uno nuevo. Así la línea avanza cada 5 s sin acumular miles de puntos.
+    const LIVE_KEYS = ["temp_c", "hum_pct", "ch4_ppm", "co2_ppm", "dist_cm", "level_pct", "rssi"];
+    let lastDraw = 0;
+    let drawTimer = null;
+
+    function appendLive(n) {
+        if (!n.telemetry || !n.telemetry_ts || hours > 24) return;
+        const t = Date.parse(n.telemetry_ts);
+        const last = history[history.length - 1];
+        const lastT = last ? Date.parse(last.ts) : 0;
+        if (t <= lastT && last?.live !== true) return;
+        const row = { ts: n.telemetry_ts, live: true };
+        for (const k of LIVE_KEYS) row[k] = n.telemetry[k];
+        const bucketMs = (hours * 3600 * 1000) / 400;
+        if (last && last.live && t - (last.bucketStart || lastT) < bucketMs) {
+            row.bucketStart = last.bucketStart || lastT;
+            history[history.length - 1] = row;
+        } else {
+            row.bucketStart = t;
+            history.push(row);
+        }
+        const from = t - hours * 3600 * 1000;
+        while (history.length && Date.parse(history[0].ts) < from) history.shift();
+        scheduleDraw();
+    }
+
+    function scheduleDraw() {
+        const panel = document.querySelector('[data-panel="historico"]');
+        if (!panel || panel.classList.contains("hidden") || document.hidden) { chartsDrawn = false; return; }
+        const wait = Math.max(0, 2000 - (Date.now() - lastDraw));
+        clearTimeout(drawTimer);
+        drawTimer = setTimeout(() => { lastDraw = Date.now(); drawCharts(false); }, wait);
+    }
+    document.addEventListener("visibilitychange", () => { if (!document.hidden && !chartsDrawn) scheduleDraw(); });
 
     async function loadHistory(animate = true) {
         document.getElementById("export-link").href = `/api/devices/${mac}/export.csv?hours=${hours}`;
@@ -298,12 +339,20 @@
         }).catch(() => {});
         loadHistory();
         loadCommands().catch(() => {});
-        setInterval(() => { if (hours <= 24) loadHistory(false); }, 60000);
+        // Las lecturas en vivo ya se suman a la gráfica; esto solo resincroniza con la base.
+        setInterval(() => { if (hours <= 24 && !document.hidden) loadHistory(false); }, 300000);
 
+        let helloCount = 0;
         App.connectLive((event) => {
-            if (event.type === "node" && event.node.mac === mac) {
+            if (event.type === "hello") {
+                const fresh = event.nodes.find(n => n.mac === mac);
+                if (fresh) { node = fresh; render(); }
+                // En una reconexión pudieron perderse lecturas: se recarga el histórico.
+                if (helloCount++ > 0) loadHistory(false);
+            } else if (event.type === "node" && event.node.mac === mac) {
                 node = event.node;
                 render();
+                appendLive(node);
             } else if (event.type === "removed" && event.mac === mac) {
                 location.href = "/";
             } else if (event.type === "ack" && event.mac === mac) {

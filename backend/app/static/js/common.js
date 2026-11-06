@@ -246,25 +246,68 @@ const App = (() => {
             document.dispatchEvent(new CustomEvent("live-state", { detail: on }));
         };
 
+        // El servidor manda un latido ("tick") cada 15 s. Si pasan STALE_MS sin
+        // ningún mensaje, la conexión está muerta aunque el navegador no lo sepa
+        // (WiFi que se cae, teléfono que estuvo en segundo plano): se abre otra.
+        const STALE_MS = 40000;
+        let ws = null;
+        let lastMessage = 0;
+        let retryTimer = null;
+
+        const reconnect = () => {
+            if (ws) {
+                ws.onclose = ws.onmessage = ws.onopen = null;
+                try { ws.close(); } catch (_) { /* ya cerrada */ }
+                ws = null;
+            }
+            clearInterval(pingTimer);
+            clearTimeout(retryTimer);
+            setState(false);
+            open();
+        };
+
         const open = () => {
             const proto = location.protocol === "https:" ? "wss" : "ws";
-            const ws = new WebSocket(`${proto}://${location.host}/ws`);
-            ws.onopen = () => {
+            const socket = new WebSocket(`${proto}://${location.host}/ws`);
+            ws = socket;
+            lastMessage = Date.now();
+            socket.onopen = () => {
                 delay = 1000;
+                lastMessage = Date.now();
                 setState(true);
-                pingTimer = setInterval(() => ws.readyState === 1 && ws.send("ping"), 25000);
+                pingTimer = setInterval(() => socket.readyState === 1 && socket.send("ping"), 25000);
             };
-            ws.onmessage = (ev) => {
-                try { onEvent(JSON.parse(ev.data)); } catch (err) { console.error(err); }
+            socket.onmessage = (ev) => {
+                lastMessage = Date.now();
+                let event;
+                try { event = JSON.parse(ev.data); } catch (err) { console.error(err); return; }
+                if (event.type === "tick") return;
+                try { onEvent(event); } catch (err) { console.error(err); }
             };
-            ws.onclose = (ev) => {
+            socket.onclose = (ev) => {
+                if (ws !== socket) return;
+                ws = null;
                 clearInterval(pingTimer);
                 setState(false);
                 if (ev.code === 4401) { location.href = "/login"; return; }
-                setTimeout(open, delay);
+                retryTimer = setTimeout(open, delay);
                 delay = Math.min(delay * 2, 30000);
             };
         };
+
+        setInterval(() => {
+            if (ws && ws.readyState === 1 && Date.now() - lastMessage > STALE_MS) reconnect();
+        }, 5000);
+        const wake = () => {
+            if (document.hidden) return;
+            if (!ws || ws.readyState !== 1 || Date.now() - lastMessage > STALE_MS) {
+                delay = 1000;
+                reconnect();
+            }
+        };
+        document.addEventListener("visibilitychange", wake);
+        window.addEventListener("online", wake);
+        window.addEventListener("pageshow", (ev) => { if (ev.persisted) wake(); });
         open();
     }
 

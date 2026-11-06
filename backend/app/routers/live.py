@@ -12,6 +12,7 @@ from urllib.parse import urlsplit
 
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 
+from ..config import settings
 from ..deps import COOKIE_NAME, authenticate_token
 from ..services import bridge, hub, registry
 
@@ -22,7 +23,12 @@ def _same_origin(ws: WebSocket) -> bool:
     origin = ws.headers.get("origin")
     if not origin:
         return True  # clientes que no son navegador
-    return urlsplit(origin).netloc == ws.headers.get("host")
+    netloc = urlsplit(origin).netloc
+    if netloc == ws.headers.get("host"):
+        return True
+    # Detrás de un proxy (Tailscale Funnel) el Host puede llegar reescrito;
+    # se aceptan las direcciones públicas declaradas del propio servidor.
+    return any(urlsplit(url).netloc == netloc for url in settings.public_urls)
 
 
 @router.websocket("/ws")

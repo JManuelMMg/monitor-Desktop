@@ -14,7 +14,7 @@ from .topics import format_mac
 
 DEFAULT_CONFIG: dict[str, Any] = {
     "rev": 0,
-    "interval_ms": 5000,
+    "interval_ms": 2000,
     "dht_temp_offset": 0.0,
     "dht_hum_offset": 0.0,
     "us_offset_cm": 0.0,

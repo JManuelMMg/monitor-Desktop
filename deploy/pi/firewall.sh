@@ -28,5 +28,13 @@ ufw allow from "$WG_CIDR" to any port 22 proto tcp comment 'SSH VPN'
 
 ufw allow "$WG_PORT"/udp comment 'WireGuard'
 
+# Tailscale Funnel: el panel público (https://<nombre>.ts.net) llega por la
+# interfaz tailscale0. Los nodos de ingreso de Funnel entregan las conexiones a
+# la peerapi de tailscaled (puerto alto variable) y tailscaled las pasa a
+# localhost:8443. A tailscale0 solo llega tráfico autenticado por Tailscale y ya
+# filtrado por las ACL del tailnet, así que se permite completo (lo que
+# recomienda Tailscale con ufw).
+ufw allow in on tailscale0 comment 'Tailscale'
+
 ufw --force enable
 ufw status verbose

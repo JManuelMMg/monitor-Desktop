@@ -3,7 +3,7 @@
 
 const NodeCard = (() => {
     const SPARK_POINTS = 40;
-    const SPARK_COLOR = getComputedStyle(document.documentElement).getPropertyValue("--c-ch4").trim() || "#2dd4bf";
+    const sparkColor = () => getComputedStyle(document.documentElement).getPropertyValue("--c-ch4").trim() || "#2dd4bf";
     const buffers = new Map();   // mac -> últimos valores de CH4
 
     function pushSample(mac, value) {
@@ -69,7 +69,7 @@ const NodeCard = (() => {
         card.querySelector(".mac").textContent = node.mac_display;
         card.querySelector(".rssi").textContent = Number.isFinite(t.rssi) ? `${t.rssi} dBm` : "—";
         card.querySelector(".seen").textContent = App.timeAgo(node.last_seen);
-        card.querySelector(".node-spark").innerHTML = App.sparkline(buffers.get(node.mac) || [], SPARK_COLOR);
+        card.querySelector(".node-spark").innerHTML = App.sparkline(buffers.get(node.mac) || [], sparkColor());
     }
 
     function refreshTimes(card, node) {

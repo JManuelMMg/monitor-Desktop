@@ -30,7 +30,11 @@ const LineChart = (() => {
     function layout(canvas, series) {
         const dpr = window.devicePixelRatio || 1;
         const width = canvas.clientWidth;
-        const height = Number(canvas.getAttribute("height")) || 200;
+        // El alto CSS se lee UNA vez del atributo height del HTML y se guarda:
+        // canvas.height (abajo) reescribe ese atributo multiplicado por dpr, y
+        // releerlo hacía crecer la gráfica en cada redibujo (×2–3 en celulares).
+        if (!canvas.dataset.cssHeight) canvas.dataset.cssHeight = canvas.getAttribute("height") || "200";
+        const height = Number(canvas.dataset.cssHeight) || 200;
         canvas.style.height = `${height}px`;
         canvas.width = Math.round(width * dpr);
         canvas.height = Math.round(height * dpr);
@@ -163,7 +167,7 @@ const LineChart = (() => {
             const w = Math.max(...lines.map(l => ctx.measureText(l).width)) + 16;
             const h = lines.length * 16 + 10;
             const bx = Math.min(Math.max(xx + 10, L.left), L.left + L.plotW - w);
-            ctx.fillStyle = "rgba(9, 15, 22, .94)";
+            ctx.fillStyle = css("--chart-tip-bg") || "rgba(9, 15, 22, .94)";
             ctx.strokeStyle = css("--border-strong") || "#2b3f56";
             ctx.beginPath(); ctx.roundRect(bx, L.top + 4, w, h, 7); ctx.fill(); ctx.stroke();
             ctx.fillStyle = css("--text") || "#e7eef6";

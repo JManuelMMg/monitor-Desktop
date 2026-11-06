@@ -28,8 +28,9 @@ CONFIG_DIR = Path(os.environ.get("APPDATA", Path.home())) / APP_NAME
 CONFIG_FILE = CONFIG_DIR / "config.json"
 DEFAULT_CONFIG = {
     # Orden de preferencia: LAN primero, VPN después.
-    "servers": ["https://192.168.1.50:8443", "https://10.8.0.1:8443"],
+    "servers": ["https://ialab-monitor.taile0627f.ts.net", "https://192.168.120.74:8443", "https://10.8.0.1:8443"],
     "check_interval_s": 20,
+    "theme": "dark",
 }
 RESOURCE_DIR = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parent))
 
@@ -90,14 +91,28 @@ def pick_server(servers: list[str]) -> str | None:
 class Bridge:
     """API expuesta a setup.html y lógica de conmutación LAN/VPN."""
 
+    # Los atributos van con guion bajo: pywebview expone a JavaScript todo lo
+    # público de js_api y recorría la ventana entera (errores «maximum
+    # recursion depth» en la consola al abrir la app).
     def __init__(self) -> None:
-        self.config = load_config()
-        self.current: str | None = None
-        self.window: webview.Window | None = None
+        self._config = load_config()
+        self._current: str | None = None
+        self._window: webview.Window | None = None
 
     # --- llamados desde JavaScript (setup.html) ---
     def get_config(self) -> dict:
-        return {"servers": self.config["servers"], "config_file": str(CONFIG_FILE)}
+        return {"servers": self._config["servers"], "config_file": str(CONFIG_FILE),
+                "theme": self._config.get("theme", "dark")}
+
+    def set_theme(self, theme: str) -> dict:
+        """Lo llaman setup.html y el panel (theme.js) al cambiar de tema, para que
+        la pantalla de conexión de la app use el mismo."""
+        if theme not in ("dark", "light"):
+            return {"ok": False}
+        if self._config.get("theme") != theme:
+            self._config["theme"] = theme
+            save_config(self._config)
+        return {"ok": True}
 
     def save_servers(self, servers: list[str]) -> dict:
         cleaned = []
@@ -109,12 +124,12 @@ class Bridge:
                 cleaned.append(url)
         if not cleaned:
             return {"ok": False, "error": "Indica al menos un servidor"}
-        self.config["servers"] = cleaned
-        save_config(self.config)
+        self._config["servers"] = cleaned
+        save_config(self._config)
         return {"ok": True}
 
     def retry(self) -> dict:
-        url = pick_server(self.config["servers"])
+        url = pick_server(self._config["servers"])
         if url is None:
             return {"ok": False, "error": "Ningún servidor respondió. Revisa la red, la VPN o el certificado."}
         self._open(url)
@@ -122,37 +137,39 @@ class Bridge:
 
     # --- interno ---
     def _open(self, url: str) -> None:
-        self.current = url
+        self._current = url
         log.info("Usando servidor %s", url)
-        if self.window:
-            self.window.load_url(url + "/")
+        if self._window:
+            self._window.load_url(url + "/")
 
     def watch(self) -> None:
         """Si el servidor actual cae (p. ej. al salir de casa), prueba los
         demás y cambia a la VPN sin intervención."""
         while True:
-            time.sleep(max(5, int(self.config.get("check_interval_s", 20))))
-            if self.current and probe(self.current):
+            time.sleep(max(5, int(self._config.get("check_interval_s", 20))))
+            if self._current and probe(self._current):
                 continue
-            url = pick_server(self.config["servers"])
-            if url and url != self.current:
+            url = pick_server(self._config["servers"])
+            if url and url != self._current:
                 self._open(url)
-            elif url is None and self.current:
+            elif url is None and self._current:
                 log.warning("Ningún servidor disponible")
-                self.current = None
-                if self.window:
-                    self.window.load_url((RESOURCE_DIR / "setup.html").as_uri() + "?offline=1")
+                self._current = None
+                if self._window:
+                    self._window.load_url((RESOURCE_DIR / "setup.html").as_uri() + "?offline=1")
 
 
 def main() -> None:
     bridge = Bridge()
     if not CONFIG_FILE.exists():
-        save_config(bridge.config)
-    start_url = pick_server(bridge.config["servers"])
-    bridge.current = start_url
+        save_config(bridge._config)
+    start_url = pick_server(bridge._config["servers"])
+    bridge._current = start_url
     target = start_url + "/" if start_url else (RESOURCE_DIR / "setup.html").as_uri()
-    bridge.window = webview.create_window(
+    dark = bridge._config.get("theme", "dark") != "light"
+    bridge._window = webview.create_window(
         "Monitor multi-nodo", target, js_api=bridge, width=1360, height=880, min_size=(960, 640),
+        background_color="#070b10" if dark else "#f3f6f9",
     )
     threading.Thread(target=bridge.watch, daemon=True).start()
     # Sesión persistente (cookie HttpOnly) entre aperturas de la app.

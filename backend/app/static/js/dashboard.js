@@ -233,6 +233,14 @@
         }
     });
 
+    // Los minigráficos llevan el color de la serie en el SVG: se regeneran al cambiar de tema.
+    document.addEventListener("themechange", () => {
+        for (const [mac, card] of cards) {
+            const node = nodes.get(mac);
+            if (node) NodeCard.update(card, node, false);
+        }
+    });
+
     setInterval(() => {
         for (const [mac, card] of cards) {
             const node = nodes.get(mac);

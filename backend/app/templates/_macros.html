@@ -1,3 +1,7 @@
+{% macro logo(cls="brand-mark", size=44, large=False) -%}
+<picture class="{{ cls }}"><source srcset="/static/img/logo.png" media="(prefers-reduced-motion: reduce)"><img src="/static/img/{{ 'logo-lg' if large else 'logo' }}.webp" alt="" width="{{ size }}" height="{{ size }}" decoding="async"></picture>
+{%- endmacro %}
+
 {% macro icon(name, cls="") -%}
 <svg class="ic {{ cls }}" aria-hidden="true"><use href="#i-{{ name }}"/></svg>
 {%- endmacro %}

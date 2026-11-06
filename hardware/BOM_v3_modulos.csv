@@ -1,0 +1,79 @@
+﻿placa,referencias,cantidad,descripcion,valor,fabricante,numero_de_parte,encapsulado,hoja_de_datos_verificada,notas
+Placa 1,U1,1,Tarjeta de desarrollo ESP32,ESP32-DevKitC-32E,Espressif,ESP32-DevKitC-32E,Módulo 2×19 pines,no,Va en zócalo de tira hembra 2.54 mm
+Placa 1,U3,1,"Comparador 36 V, colector abierto",TLV1701,Texas Instruments,TLV1701AIDBVR,SOT-23-5 (DBV),sí,"1 IN+, 2 V−, 3 IN−, 4 OUT, 5 V+"
+Placa 1,U4,1,Referencia en paralelo 1.24 V,TLV431,Texas Instruments,TLV431AIDBZR,SOT-23-3 (DBZ),sí,"1 REF, 2 cátodo, 3 ánodo"
+Placa 1,"U5, U6",2,Protección ESD 4 canales,TPD4E1U06,Texas Instruments,TPD4E1U06DCKR,SC70-6 (DCK),sí,
+Placa 1,Q2,1,"MOSFET canal P −40 V, 20 mΩ a −4.5 V",AOD4185,Alpha & Omega,AOD4185,TO-252 (DPAK),sí,Solo el del corte por bajo voltaje (Q1 era del cargador)
+Placa 1,Q3,1,MOSFET canal N 50 V (adaptador de nivel del DHT11),BSS138,Diodes Inc.,BSS138-7-F,SOT-23,sí,"1 G, 2 S, 3 D"
+Placa 1,D1,1,Schottky 5 A 60 V (crowbar contra inversión),SB560,Diodes Inc.,SB560-T,DO-201AD,no,Se conserva de la v1 con otra conexión. SB560-T sustituye al SB560 (obsoleto en Mouser)
+Placa 1,D2,1,"TVS 600 W, VRWM 15 V",SMBJ15A,Bourns,SMBJ15A,SMB,sí,VBR 16.7 V mín.
+Placa 1,D13,1,Schottky 3 A 40 V,MBRS340T3G,onsemi,MBRS340T3G,SMC,no,Aislamiento del USB de la DevKitC (D11 era del cargador)
+Placa 1,D15,1,Zener 15 V 500 mW,BZT52C15,Diodes Inc.,BZT52C15-7-F,SOD-123,sí,
+Placa 1,F2,1,Fusible rápido 3.15 A (FSF),3.15 A 5×20 mm,Schurter,0034.1521,5 × 20 mm,no,La serie 217 de 3 A no está disponible; 3.15 A es el valor estándar más cercano
+Placa 1,F2,1,Portafusible de PCB 5×20 mm,5 × 20 mm,Littelfuse,64600001003,FUSE_5X20,no,Comprobar que coincida con la huella FUSE_5X20
+Placa 1,F3,1,"PTC rearmable 0.75 A, 13.2 V",MF-MSMF075-2,Bourns,MF-MSMF075-2,1812,sí,Riel de 5 V de los sensores locales
+Placa 1,F4,1,"PTC rearmable 0.5 A, 60 V",MF-R050,Bourns,MF-R050,"Radial, paso 5.1 mm",sí,Alimentación de 12 V del cable de sensores
+Placa 1,R1,1,Resistencia 0805 1 % 1/8 W,100 kΩ,Yageo,RC0805FR-07100KL,0805,no,Era 10 kΩ en la v1
+Placa 1,R2,1,Resistencia 0805 1 % 1/8 W,150 kΩ,Yageo,RC0805FR-07150KL,0805,no,Era 15 kΩ en la v1
+Placa 1,R3,1,Resistencia 0805 1 % 1/8 W,1.8 kΩ,Yageo,RC0805FR-071K8L,0805,no,
+Placa 1,R4,1,Resistencia 0805 1 % 1/8 W,3.3 kΩ,Yageo,RC0805FR-073K3L,0805,no,
+Placa 1,"R5, R31",2,Resistencia 0805 1 % 1/8 W,10 kΩ,Yageo,RC0805FR-0710KL,0805,no,
+Placa 1,R29,1,Resistencia 0805 1 % 1/8 W,10 kΩ,Yageo,RC0805FR-0710KL,0805,no,1 % obligatorio (umbral del LVD)
+Placa 1,"R6, R32",2,Resistencia 0805 1 % 1/8 W,100 kΩ,Yageo,RC0805FR-07100KL,0805,no,
+Placa 1,R28,1,Resistencia 0805 1 % 1/8 W,100 kΩ,Yageo,RC0805FR-07100KL,0805,no,1 % obligatorio
+Placa 1,R7,1,Resistencia 0805 1 % 1/8 W,22 kΩ,Yageo,RC0805FR-0722KL,0805,no,
+Placa 1,R26,1,Resistencia 0805 1 % 1/8 W,82 kΩ,Yageo,RC0805FR-0782KL,0805,no,
+Placa 1,R27,1,Resistencia 0805 1 % 1/8 W,845 kΩ,Yageo,RC0805FR-07845KL,0805,no,
+Placa 1,R30,1,Resistencia 0805 1 % 1/8 W,1.5 MΩ,Yageo,RC0805FR-071M5L,0805,no,
+Placa 1,"RL1, RL2, RL3, RL4",4,Resistencia 0805 1 % 1/8 W,330 Ω,Yageo,RC0805FR-07330RL,0805,no,
+Placa 1,C1,1,"Electrolítico 470 µF 25 V, 105 °C",470 µF 25 V,Panasonic,EEU-FR1E471,"Radial Ø10 mm, paso 5 mm",no,
+Placa 1,"C2, C3, C17, C18, C20",5,Capacitor cerámico 0805 X7R 50 V,100 nF,Samsung,CL21B104KBCNNNC,0805,no,
+Placa 1,C21,1,Cerámico 0805 X5R 16 V,10 µF,TDK,C2012X5R1C106K085AC,0805,no,Sustituye al Samsung CL21A106KOQNNNE (sin existencia)
+Placa 1,BUCK1,1,"Módulo reductor 12→5 V 3 A, salida ajustada a 5.00 V",MP1584EN,,,Módulo 4 pines,no,Ajustar a 5.00 V antes de montar
+Placa 1,"J2, SW1",2,"Bornera de tornillo 2 polos, paso 5.08 mm",WR-TBL 5.08 mm,Würth Elektronik,691137710002,TERM_5.08_2P,no,Batería e interruptor de panel (J3 ya no existe)
+Placa 1,"J4A, J4B",2,"Bornera enchufable 6 polos, paso 3.5 mm",KF2EDGK 3.5 mm,Genérico,KF2EDGK-3.5-6P,1751280,no,Revisar la huella contra la de la bornera de Phoenix antes de fabricar
+Placa 1,"MQ1, CO2, SR1",3,"Tira de pines macho 1×4, 2.54 mm",1×4,Würth Elektronik,61300411121,HDR_1X4,no,Solo para conectar sensores directo en banco
+Placa 1,DHT1,1,"Tira de pines macho 1×3, 2.54 mm",1×3,Würth Elektronik,61300311121,HDR_1X3,no,Solo banco
+Placa 1,"LED1, LED2, LED3, LED4",4,LED 5 mm difuso,Rojo,Kingbright,WP7113ID,LED5MM,no,"Alarmas CH4, CO2, nivel, T/H. Cambiar dos por ámbar si se quiere distinguir"
+Placa 1,U1,2,"Tira hembra 1×20, 2.54 mm (zócalo de la DevKitC, cortada a 19)",1×20,Würth Elektronik,61302011821,,no,"2 piezas; no hay 1×19 en Mouser, se corta la posición 20"
+Placa 2,U1,1,"Módulo reductor 5 V (Mini560), entrada 5-20 V",Mini560 5 V,Genérico,Mini560 (5 V),"Módulo, 3 pines (VIN, GND, VOUT)",no,Medir la salida: el MQ-4 pide 5.0 ± 0.1 V. Su entrada máxima es 20 V; el TVS D2 deja pasar picos mayores
+Placa 2,U3,1,Amplificador operacional RRIO 1 MHz,TLV9001,Texas Instruments,TLV9001IDBVR,SOT-23-5 (DBV),sí,"1 OUT, 2 V−, 3 IN+, 4 IN−, 5 V+"
+Placa 2,"U4, U5",2,"Buffer de 3 estados, entradas TTL",SN74AHCT1G125,Texas Instruments,SN74AHCT1G125DBVR,SOT-23-5 (DBV),sí,"1 OE, 2 A, 3 GND, 4 Y, 5 VCC"
+Placa 2,"U6, U7",2,Protección ESD 4 canales,TPD4E1U06,Texas Instruments,TPD4E1U06DCKR,SC70-6 (DCK),sí,
+Placa 2,D1,1,Schottky 3 A 40 V (inversión de la entrada),MBRS340T3G,onsemi,MBRS340T3G,SMC,no,
+Placa 2,D2,1,"TVS 600 W, VRWM 18 V",SMBJ18A,Bourns,SMBJ18A,SMB,sí,"VBR 20 V mín., VC 29.2 V"
+Placa 2,C1,1,"Electrolítico 47 µF 35 V, 105 °C",47 µF 35 V,Panasonic,ECA-1VHG470,"Radial Ø6.3 mm, paso 2.5 mm",no,
+Placa 2,"C2, C4, C5, C6, C7",5,Capacitor cerámico 0805 X7R 50 V,100 nF,Samsung,CL21B104KBCNNNC,0805,no,
+Placa 2,C3,1,Cerámico 0805 X5R 16 V,10 µF,TDK,C2012X5R1C106K085AC,0805,no,Sustituye al Samsung CL21A106KOQNNNE (sin existencia)
+Placa 2,R1,1,Resistencia 0805 1 % 1/8 W,1 kΩ,Yageo,RC0805FR-071KL,0805,no,
+Placa 2,"R2, R3, R4, R5, R7, R8",6,Resistencia 0805 1 % 1/8 W,100 Ω,Yageo,RC0805FR-07100RL,0805,no,Serie en las líneas del cable
+Placa 2,"R6, R10",2,Resistencia 0805 1 % 1/8 W,100 kΩ,Yageo,RC0805FR-07100KL,0805,no,
+Placa 2,R9,1,Resistencia 0805 1 % 1/8 W,5.1 kΩ,Yageo,RC0805FR-075K1L,0805,no,Pull-up del DHT11 (hoja de datos: 5.1 kΩ hasta 20 m)
+Placa 2,"J1A, J1B",2,"Bornera enchufable 6 polos, paso 3.5 mm",KF2EDGK 3.5 mm,Genérico,KF2EDGK-3.5-6P,1751280,no,Revisar la huella contra la de la bornera de Phoenix antes de fabricar
+Placa 2,"J2, J3, J4",3,"Conector JST XH 4 polos, vertical",B4B-XH-A,JST,B4B-XH-A(LF)(SN),XH-4,no,"MQ-4, MH-Z19C, AJ-SR04M"
+Placa 2,J5,1,"Conector JST XH 3 polos, vertical",B3B-XH-A,JST,B3B-XH-A(LF)(SN),XH-3,no,DHT11
+Sensores,MQ-4,1,Módulo sensor de metano MQ-4 (salida analógica),MQ-4,Hanwei / Winsen,MQ-4 (módulo),,sí,Necesita O2 ≥ 2 % y < 95 % HR: no sirve dentro del gas del digestor
+Sensores,MH-Z19C,1,"Sensor NDIR de CO2, UART",400-5000 ppm,Winsen,MH-Z19C,,sí,5.0 ± 0.1 V; rango insuficiente para biogás (30-45 % CO2)
+Sensores,AJ-SR04M,1,Sensor ultrasónico de nivel a prueba de agua,AJ-SR04M,,AJ-SR04M,,no,Transductor con cable de 2.5 m
+Sensores,DHT11,1,Sensor de temperatura y humedad,DHT11,Aosong,DHT11,,sí,3.3-5.5 V; con condensación se daña
+Cableado,W1,1,"Cable apantallado 6 pares trenzados 0.34 mm² (AWG 22), pantalla trenzada, cubierta PUR negra resistente a UV e hidrólisis","6×2×0.34 mm², hasta 20 m",,,,no,Unidad central ↔ placa 2. Pedir la longitud real + 1 m
+Cableado,W1,1,Punteras aisladas para 0.34 mm²,0.34 mm²,,,,no,24 piezas + repuestos (12 por extremo)
+Cableado,W1,1,Termoretráctil con adhesivo 3:1 Ø12 mm,Ø12 mm,,,,no,"Sellar la cubierta en ambos extremos, 2 × 50 mm"
+Cableado,W2-W5,1,Carcasa JST XH 4 polos,XHP-4,JST,XHP-4,,no,"3 piezas: MQ-4, MH-Z19C, AJ-SR04M"
+Cableado,W5,1,Carcasa JST XH 3 polos,XHP-3,JST,XHP-3,,no,1 pieza: DHT11
+Cableado,W2-W5,1,Terminal de engaste JST XH 22-28 AWG,SXH-001T-P0.6,JST,SXH-001T-P0.6,,no,15 piezas + 10 % de repuesto
+Cableado,W2-W5,1,Cable UL1007 24 AWG (4 colores),24 AWG,,,,no,Arneses de 30 cm placa 2 ↔ sensores
+Cableado,W6,1,Cable de batería 1.5 mm² (rojo/negro) con terminal de ojo M5 / faston 6.3 mm,1.5 mm²,,,,no,Batería ↔ J2
+Cableado,W7,1,Cable 2 × 0.75 mm² para el adaptador de 19 V,2 × 0.75 mm²,,,,no,Adaptador ↔ J3
+Mecánica,G1,1,"Gabinete de la unidad central IP65, policarbonato o ABS, con espacio para la batería de 7 Ah",≈ 250 × 200 × 100 mm,,,,no,
+Mecánica,G2,1,Caja de la placa 2 IP67 de policarbonato,≈ 120 × 80 × 55 mm,,,,no,Dentro del espacio protegido del biodigestor
+Mecánica,G3,1,Prensaestopa IP68 M16 × 1.5 para cable Ø 4.5-10 mm (latón niquelado o acero inoxidable 316 por el H2S),M16,,,,no,2 piezas: una por gabinete para W1
+Mecánica,G4,1,Prensaestopa IP68 M12 × 1.5 para cable Ø 3-6.5 mm,M12,,,,no,4 piezas en G2 (arneses y cable del transductor ultrasónico)
+Mecánica,G5,1,Respiradero de membrana ePTFE M12 IP67,M12,,,,no,1 pieza en G2: iguala presión sin dejar entrar agua
+Mecánica,G6,1,"Tubo flexible hermético (licuatite) 1/2"" con conectores","1/2""",,,,no,Protección mecánica de W1 en el tramo exterior
+Mecánica,G7,1,Separadores de nylon M3 × 10 mm con tornillos,M3,,,,no,8 piezas (4 por placa)
+Mecánica,G8,1,Barniz conformal acrílico,Acrílico,MG Chemicals,419D,,no,"Placa 2 completa y módulos de sensores, sin tapar las ventanas de gas"
+Mecánica,G9,1,Bolsa desecante de gel de sílice 10 g,10 g,,,,no,Dentro de G2; cambiar en cada mantenimiento
+Mecánica,SW1,1,"Interruptor de balancín de panel IP65, 10 A 250 V",10 A,,,,no,Cableado a la bornera SW1
+Mecánica,CH1,1,"Cargador inteligente de plomo-ácido 12 V 1.2 A, 3 etapas",12 V 1.2 A,NASTIMA,B0BC3Y5N3Q (Amazon México),,no,Se conecta a los bornes de la batería; reemplaza al adaptador de 19 V y al cargador CN3767
+Mecánica,BAT1,1,Batería AGM 12 V 7 Ah,12 V 7 Ah,Yuasa,NP7-12,,no,

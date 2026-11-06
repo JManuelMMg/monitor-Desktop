@@ -482,6 +482,7 @@ void publishTelemetry(const Reading& r) {
   else d["co2_ppm"] = nullptr;
   setOrNull(d, "dist_cm", r.usOk, r.distCm);
   setOrNull(d, "level_pct", r.usOk, r.levelPct);
+  setOrNull(d, "vbus_v", true, r.vbusV);
   d["dht_ok"] = r.dhtOk;
   d["co2_ok"] = r.co2Ok;
   d["mq_warm"] = r.mqWarm;
@@ -493,6 +494,14 @@ void publishTelemetry(const Reading& r) {
   serializeJson(d, Serial);
   Serial.println();
   publishJson(tTelemetry, d, false);
+}
+
+// Una lectura inválida apaga su LED, igual que el backend no alarma con null.
+void updateAlarmLeds(const Reading& r) {
+  digitalWrite(PIN_ALR_CH4, r.mqOk && r.ch4Ppm > ALR_CH4_PPM_MAX);
+  digitalWrite(PIN_ALR_CO2, r.co2Ok && r.co2Ppm > ALR_CO2_PPM_MAX);
+  digitalWrite(PIN_ALR_NIVEL, r.usOk && r.levelPct > ALR_LEVEL_PCT_MAX);
+  digitalWrite(PIN_ALR_TH, r.dhtOk && r.tempC > ALR_TEMP_C_MAX);
 }
 
 void pollCalibration() {
@@ -537,6 +546,10 @@ void rebootNow() {
 void setup() {
   Serial.begin(115200);
   pinMode(PIN_LED, OUTPUT);
+  for (int pin : {PIN_ALR_CH4, PIN_ALR_CO2, PIN_ALR_NIVEL, PIN_ALR_TH}) {
+    pinMode(pin, OUTPUT);
+    digitalWrite(pin, LOW);
+  }
   setupWatchdog();
   readMac();
   randomSeed(esp_random());
@@ -567,6 +580,7 @@ void loop() {
     Reading r;
     sensors::read(cfg, r);
     publishTelemetry(r);
+    updateAlarmLeds(r);
   }
 
   updateLed();

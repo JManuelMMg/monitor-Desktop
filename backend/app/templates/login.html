@@ -1,14 +1,15 @@
 {% extends "base.html" %}
-{% from "_macros.html" import icon %}
+{% from "_macros.html" import icon, logo %}
 {% block title %}Iniciar sesión{% endblock %}
 {% block public %}
 <div class="auth">
     <section class="auth-art">
         <a class="brand" href="/login">
-            <span class="brand-mark">{{ icon('zap') }}</span>
+            {{ logo() }}
             <span class="brand-text">MONITOR<small>multi-nodo</small></span>
         </a>
         <div>
+            {{ logo("auth-hero", 168, True) }}
             <h1>Tus biodigestores, <span>en vivo</span> y desde cualquier lugar.</h1>
             <p>Temperatura, humedad, metano, CO₂ y nivel de cada nodo ESP32, con alarmas al instante y el histórico guardado en la nube.</p>
             <ul class="feature-list">

@@ -4,25 +4,37 @@
 <meta charset="utf-8">
 <title>Conexión · Monitor multi-nodo</title>
 <style>
-    body { margin: 0; background: #0b0f14; color: #e6edf3; font: 15px "Segoe UI", system-ui, sans-serif; }
-    main { max-width: 620px; margin: 8vh auto; background: #121922; border: 1px solid #243040; border-radius: 10px; padding: 2rem; }
-    h1 { margin-top: 0; letter-spacing: .06em; } h1 span { color: #2dd4bf; }
-    p, li { color: #8b98a8; line-height: 1.5; }
-    textarea { width: 100%; box-sizing: border-box; min-height: 90px; background: #0b0f14; color: #e6edf3; border: 1px solid #243040; border-radius: 8px; padding: .6rem; font: 14px Consolas, monospace; }
-    button { font: inherit; padding: .55rem 1rem; border-radius: 8px; border: 1px solid #2dd4bf; background: #2dd4bf; color: #05221e; font-weight: 600; cursor: pointer; margin-right: .5rem; }
-    button.ghost { background: transparent; color: #e6edf3; border-color: #243040; }
-    #msg { min-height: 1.5em; } .err { color: #ef4444; } .ok { color: #22c55e; }
-    code { background: #18212c; padding: 0 .3em; border-radius: 4px; color: #e6edf3; }
+    :root {
+        --bg: #070b10; --panel: #0f1720; --border: #1f2e40; --text: #e7eef6; --muted: #8696aa;
+        --accent: #2dd4bf; --on-accent: #032421; --code: #142030; --err: #f43f5e; --ok: #22c55e;
+        color-scheme: dark;
+    }
+    :root[data-theme="light"] {
+        --bg: #f3f6f9; --panel: #ffffff; --border: #dce3eb; --text: #0f1b2a; --muted: #52627a;
+        --accent: #0d9488; --on-accent: #ffffff; --code: #eceff4; --err: #e11d48; --ok: #15803d;
+        color-scheme: light;
+    }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 15px "Segoe UI", system-ui, sans-serif; transition: background-color .25s, color .25s; }
+    main { position: relative; max-width: 620px; margin: 8vh auto; background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 2rem; }
+    h1 { margin-top: 0; letter-spacing: .06em; } h1 span { color: var(--accent); }
+    p, li { color: var(--muted); line-height: 1.5; }
+    textarea { width: 100%; box-sizing: border-box; min-height: 90px; background: var(--bg); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: .6rem; font: 14px Consolas, monospace; }
+    button { font: inherit; padding: .55rem 1rem; border-radius: 8px; border: 1px solid var(--accent); background: var(--accent); color: var(--on-accent); font-weight: 600; cursor: pointer; margin-right: .5rem; }
+    button.ghost { background: transparent; color: var(--text); border-color: var(--border); }
+    #theme { position: absolute; top: 1rem; right: 1rem; margin: 0; padding: .4rem .65rem; }
+    #msg { min-height: 1.5em; } .err { color: var(--err); } .ok { color: var(--ok); }
+    code { background: var(--code); padding: 0 .3em; border-radius: 4px; color: var(--text); }
 </style>
 </head>
 <body>
 <main>
+    <button id="theme" class="ghost" type="button" aria-label="Cambiar tema">☀ Tema claro</button>
     <h1>MONITOR <span>MULTI-NODO</span></h1>
     <p id="intro">No se pudo conectar con la Raspberry Pi.</p>
     <ul>
         <li>En casa: la PC debe estar en la misma red que la Pi.</li>
         <li>Fuera de casa: activa el túnel WireGuard antes de abrir la app.</li>
-        <li>La CA de la Pi debe estar instalada en Windows (<code>instalar_ca.ps1</code>).</li>
+        <li>Con la dirección pública (<code>https://…ts.net</code>) no hace falta instalar ningún certificado.</li>
     </ul>
     <label for="servers"><p>Servidores, uno por línea, en orden de preferencia (red local primero, VPN después):</p></label>
     <textarea id="servers" spellcheck="false"></textarea>
@@ -32,6 +44,15 @@
     <p><small id="cfg"></small></p>
 </main>
 <script>
+    const applyTheme = (theme) => {
+        document.documentElement.dataset.theme = theme;
+        document.getElementById("theme").textContent = theme === "light" ? "☾ Tema oscuro" : "☀ Tema claro";
+    };
+    document.getElementById("theme").addEventListener("click", () => {
+        const next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+        applyTheme(next);
+        window.pywebview?.api?.set_theme(next);
+    });
     const msg = (text, cls) => { const el = document.getElementById("msg"); el.textContent = text; el.className = cls || ""; };
     async function connect() {
         msg("Probando servidores…");
@@ -40,6 +61,7 @@
     }
     window.addEventListener("pywebviewready", async () => {
         const cfg = await window.pywebview.api.get_config();
+        applyTheme(cfg.theme === "light" ? "light" : "dark");
         document.getElementById("servers").value = cfg.servers.join("\n");
         document.getElementById("cfg").textContent = "Configuración: " + cfg.config_file;
         if (new URLSearchParams(location.search).has("offline")) {

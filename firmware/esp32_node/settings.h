@@ -19,7 +19,7 @@ struct NetSettings {
 // <nodo>/config/set y el nodo responde con <nodo>/config/state.
 struct NodeConfig {
   uint32_t rev = 0;
-  uint32_t intervalMs = 5000;
+  uint32_t intervalMs = 2000;
   float dhtTempOff = 0.0f;
   float dhtHumOff = 0.0f;
   float usOffsetCm = 0.0f;

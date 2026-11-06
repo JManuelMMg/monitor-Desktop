@@ -113,7 +113,7 @@ Debe responder.
 ### A3. Entrar por SSH
 
 ```powershell
-ssh usuario@192.168.1.50
+ssh ialab@192.168.120.74
 ```
 
 La primera vez escribe `yes` y luego tu contraseña. A partir de aquí, los
